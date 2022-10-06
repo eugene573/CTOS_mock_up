@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('handphone_number')->nullable();
             $table->string('status')->nullable();
             $table->string('gender')->nullable();
-            $table->integer('type');
+            $table->integer('type')->default();
             $table->rememberToken();
             $table->timestamps();
         });

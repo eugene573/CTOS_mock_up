@@ -9,7 +9,7 @@
             <br>
             <div class="column" style=" float: left; width: 20%;">
              <h5>Create Members</h5>
-                 <form method="POST" action="/userregister">
+                 <form method="POST" action="{{ route('register.post') }}">
                     {{ csrf_field() }}
               
                     <div class="form-group">
@@ -30,7 +30,7 @@
 
                     <div class="form-group">
                         <label for="contactNumber">Contact Number:</label>
-                        <input type="tel" class="form-control" placeholder="Contact Number" id="contactNumber" name="contactNumber"  required autofocus>
+                        <input type="tel" class="form-control" placeholder="Contact Number" id="handphone_number" name="handphone_number"  required autofocus>
                     </div>  
                     
                     <div class="form-group">
@@ -44,17 +44,17 @@
                   
                     <div class="form-group">
                         <label for="gender">Gender:</label><br>
-                        <input type="radio" id="male" name="gender"
+                        <input type="radio" id="gender" name="male"
                         style="vertical-align: middle; margin-bottom:2px;">
                         <label for="Male" style="font-size:14px;">Male</label>&nbsp
-                        <input type="radio" id="femela" name="gender"
+                        <input type="radio" id="gender" name="female"
                         style="vertical-align: middle;margin-bottom:2px;margin-left:5px;">
                         <label for="femela" style="font-size:14px;">Female</label>
                     </div>
 
                     <div class="form-group">
                         <label for="type" style="margin-bottom:5px;">Type:</label><br>
-                        <input type="number" id="type" class="form-control" name="type" value="1" required default READONLY/>
+                        <input type="number" id="type" class="form-control" name="type"  value="1" min="1" max="1">
                         <p style="margin:1px;font-size:9px;">*1 = Member</p>
                     </div>
 

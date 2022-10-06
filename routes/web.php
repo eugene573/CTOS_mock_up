@@ -26,12 +26,13 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
 Route::get('registration', [AuthController::class, 'registration'])->name('register');
+Route::get('userRegistration', [AuthController::class, 'MemberRegistration'])->name('userregister');
+Route::get('agent-registration', [AuthController::class, 'agentRegistration'])->name('agent.register');
+
 Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
 Route::get('dashboard', [AuthController::class, 'dashboard']); 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('userRegistration', [AuthController::class, 'MemberRegistration'])->name('userregister');
-Route::get('agent-registration', [AuthController::class, 'agentRegistration'])->name('agent.register');
 
 //Route for providing support if user forget password
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');

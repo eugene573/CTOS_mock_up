@@ -33,15 +33,6 @@ h5{
     font-size: 14px;
 } 
 
-.form-group select{
-    padding:2px;
-    width:60%;
-    height: fit-content;
-}
-.form-group select label,option{
-    font-size:13px;
-    
-}
 .form-group button{
     cursor:pointer;
     width:200px;
