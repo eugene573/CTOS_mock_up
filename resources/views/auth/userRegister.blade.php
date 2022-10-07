@@ -58,7 +58,7 @@
                         <p style="margin:1px;font-size:9px;">*1 = Member</p>
                     </div>
 
-                    <div class="form-group" style="margin-top:30px;">
+                    <div class="form-group" >
                         <label for="password">Password:</label>
                         <input type="password" class="form-control" placeholder="Password" id="password" name="password"  required autofocus>
                         @if ($errors->has('password'))
