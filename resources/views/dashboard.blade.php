@@ -10,14 +10,16 @@
                 <div class="card-body">
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
-                            {{ session('success') }}
+                            {{ session('success') }} 
+                            
                         </div>
+                        
                     @endif
   
-                    You are Logged In
+                   You are Logged In
                     
                     <a class="nav-link" href="{{ route('agent.register') }}">Register an agent here!</a>
-                
+                    <a class="nav-link" href="{{ route('user.register') }}">Register new member here!</a>
                 </div>
                 @elseif(auth()->user()->isAgent())
                 <div class="card-header">{{ __('Agent Dashboard') }}</div>
@@ -31,8 +33,8 @@
   
                     You are Logged In as an agent. 
                     
-                    <a class="nav-link" href="#">Register new user here!</a>
-                
+                    <a class="nav-link" href="{{ route('user.register') }}">Register new member here!</a>
+                 
                 </div>
                 @endif
             </div>

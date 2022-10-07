@@ -41,17 +41,19 @@ class AuthController extends Controller
 
     }
 
-    public function postRegistration(Request $request){
+    public function postUserRegistration(Request $request){
 
         $request->validate([
             'name' => 'required',
             'password' => 'required',
             'email' => 'required',
-            'type' => 'required'
+            'type' => 'required',
+            'status' => 'required',
+            'handphone_number' => 'required',
+            'gender' => 'required',
         ]);
 
         $data = $request->all();
-        $check = $this->create($data);
 
         return redirect('dashboard')->withSuccess('You have successfully logged in!');
     }
@@ -77,6 +79,9 @@ class AuthController extends Controller
             'name' => $data['name'],
             'password' => Hash::make($data['password']),
             'email' => $data['email'],
+            'gender' => $data['gender'],
+            'handphone_number' => $data['handphone_number'],
+            'status' => $data['status']
         ]);
     }
 

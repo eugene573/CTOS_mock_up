@@ -30,13 +30,21 @@
 
                     <div class="form-group">
                         <label for="contactNumber">Contact Number:</label>
-                        <input type="tel" class="form-control" placeholder="Contact Number" id="handphone_number" name="handphone_number"  required autofocus>
+                        <input type="tel" class="form-control" placeholder="Contact Number" id="handphone_number" name="handphone_number" 
+                        pattern="[0-9]{3}-[0-9]{7}" required autofocus>
+                        <p style="margin:1px;font-size:9px;">*Format: 123-4567890</p>
+                        @if ($errors->has('handphone_number'))
+                                      <span class="text-danger">{{ $errors->first('handphone_number') }}</span>
+                       @endif
                     </div>  
                     
                     <div class="form-group">
                         <label for="status">Status:</label>
                         <input type="text" class="form-control" id="status" name="status" required autofocus>
                         <p style="margin:1px;font-size:9px;">*No Score, Poor, Low, Fair, Good, Very Good, &nbspExcellent</p>
+                        @if ($errors->has('status'))
+                                      <span class="text-danger">{{ $errors->first('status') }}</span>
+                                  @endif
                     </div>
                     </div>
         <!--Column 2-->
