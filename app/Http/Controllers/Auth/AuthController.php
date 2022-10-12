@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use DB;
 
 // here is the code for settling login,register,logout function
 class AuthController extends Controller
@@ -21,6 +22,12 @@ class AuthController extends Controller
     public function agentRegistration(){
 
         return view('auth.agentRegistration');
+
+    }
+
+    public function userRegistration(){
+
+        return view('auth.userRegistration');
 
     }
 
@@ -41,27 +48,22 @@ class AuthController extends Controller
 
     }
 
-    public function postUserRegistration(Request $request){
-
+    public function postRegistration(Request $request){
+        
         $request->validate([
             'name' => 'required',
             'password' => 'required',
             'email' => 'required',
             'type' => 'required',
-            'status' => 'required',
-            'handphone_number' => 'required',
-            'gender' => 'required',
+            'handphone_number' => 'nullable',
+            'status' => 'nullable',
+            'gender' => 'nullable',
         ]);
-
+    
         $data = $request->all();
+        $check = $this->create($data);
 
         return redirect('dashboard')->withSuccess('You have successfully logged in!');
-    }
-
-    public function MemberRegistration(){
-
-        return view('auth.userRegister');
-
     }
 
     public function dashboard(){
@@ -72,21 +74,68 @@ class AuthController extends Controller
 
         return redirect('login')->withSuccess('You do not have access to this page!');
     }
-
+    
     public function create(array $data){
-
+        
         return User::create([
             'name' => $data['name'],
             'password' => Hash::make($data['password']),
             'email' => $data['email'],
-            'gender' => $data['gender'],
             'handphone_number' => $data['handphone_number'],
-            'status' => $data['status']
+            'gender' => $data['gender'],
+            'status' => $data['status'],
+            'type' => $data['type']
         ]);
     }
 
-    public function logout(){
+    public function view()
+    {
+        $viewUsers = User::all();
+        return view("auth.showUser")->with("users",$viewUsers);
+    }
 
+    public function editMember($id)
+    {
+        $members = User::all()->where('id',$id);
+
+        return view('auth.editMember')->with('users',$members);
+    }
+
+    public function editAgent($id)
+    {
+        $agents = User::all()->where('id',$id);
+
+        return view('auth.editAgent')->with('users',$agents);
+    }
+
+    public function update(Request $r)
+    {
+        $users = User::find($r->id);
+        $r->validate([
+            'name' => 'required',
+            'password' => 'required',
+            'email' => 'required',
+            'handphone_number' => 'nullable',
+            'gender' => 'nullable',
+            'status' => 'nullable',
+            'ic' => 'nullable',
+            'bank_account_number' => 'nullable',
+            'bank_company' => 'nullable'
+        ]);
+
+        $users->name = $r->name;
+        $users->password = $r->password;
+        $users->email = $r->email;
+        $users->handphone_number = $r->handphone_number;
+        $users->gender = $r->gender;
+        $users->status = $r->status;
+        $users->ic = $r->ic;
+        $users->bank_account_number = $r->bank_account_number;
+        $users->bank_company = $r->bank_company;
+    }
+
+    public function logout()
+    {
         Session::flush();
         Auth::logout();
 
