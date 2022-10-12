@@ -31,10 +31,6 @@ class AuthController extends Controller
 
     }
 
-    public function updateMember(){
-        return view('pages.UpdateUser');
-    }
-
     public function updateAgent(){
         return view('pages.UpdateAgent');
     }
@@ -140,6 +136,8 @@ class AuthController extends Controller
         $users->ic = $r->ic;
         $users->bank_account_number = $r->bank_account_number;
         $users->bank_company = $r->bank_company;
+
+       // Return redirect()->route('');
     }
 
     public function logout()
