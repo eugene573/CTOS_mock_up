@@ -1,7 +1,7 @@
 
 @extends('layout')
 @section('content')
-<link rel="stylesheet" type="text/css" href="{{ url('css/userRegister.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url('css/update.css') }}">
 <main class="register-form">
   <div class="cotainer" style="overflow-x:hidden">
   <div class="row justify-content-right ml-5">
@@ -9,7 +9,7 @@
             <br>
             <div class="column" style=" float: left; width: 20%;">
              <h5>Create Members</h5>
-                 <form method="POST" action="{{ route('register.post') }}">
+                 <form method="POST" action="#">
                     {{ csrf_field() }}
               
                     <div class="form-group">
@@ -37,6 +37,13 @@
                                       <span class="text-danger">{{ $errors->first('handphone_number') }}</span>
                        @endif
                     </div>  
+                    <div class="form-group">
+                        <label for="bankAccount">Bank Account:</label>
+                        <input type="text" class="form-control" placeholder="Enter Bank Account number" id="bankAccount" name="bankAccount"  required autofocus>
+                        @if ($errors->has('bankAccount'))
+                                      <span class="text-danger">{{ $errors->first('bankAccount') }}</span>
+                                  @endif
+                    </div>
                     
                     <div class="form-group">
                         <label for="status">Status:</label>
