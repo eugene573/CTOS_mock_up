@@ -20,7 +20,7 @@
                                   @endif
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group"  style="margin-top:20px;">
                         <label for="email">Email:</label>
                         <input type="email" class="form-control"placeholder="Email" id="email" name="email" required autofocus>
                         @if ($errors->has('email'))
@@ -28,7 +28,7 @@
                                   @endif
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group"   style="margin-top:20px;">
                         <label for="gender">Gender:</label><br>
                         <input type="radio" id="male" name="gender"
                         style="vertical-align: middle; margin-bottom:2px;">
@@ -38,7 +38,7 @@
                         <label for="femela" style="font-size:14px;">Female</label>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group"   style="margin-top:20px;">
                         <label for="ic">IC Number:</label>
                         <input type="text" class="form-control" placeholder="IC eg. 991114-07-7777" id="ic" name="ic"
                         pattern="[0-9]{6}-[0-9]{2}-[0-9]{4}"  required autofocus>
@@ -47,33 +47,30 @@
                                   @endif
                     </div> 
                     <div class="form-group"style="margin-top:20px;">
-                        <label for="bankAccount">Bank Account Number:</label>
-                        <input type="text" class="form-control" placeholder="Enter Bank Account number" id="bank_account_number" name="bank_account_number"  required autofocus>
+                        <input type="hidden" class="form-control" id="bank_account_number" name="bank_account_number"  required autofocus>
                         @if ($errors->has('bank_account_number'))
                                       <span class="text-danger">{{ $errors->first('bank_account_number') }}</span>
                                   @endif
                     </div>
                     </div>
         <!--Column 2-->
-                <div class="column" style=" float: left;width: 20%;margin-left:50px; padding-top:32px;"  required autofocus>
+                <div class="column" style=" float: left;width: 20%;margin-left:50px; padding-top:21px;"  required autofocus>
                 <div class="form-group">
-                        <label for="bankCompany">Bank Company:</label>
-                        <input type="text" class="form-control" placeholder="Enter Bank Company" id="bank_company" name="bank_company"  required autofocus>
+                        <input type="hidden" class="form-control" id="bank_company" name="bank_company"  required autofocus>
                         @if ($errors->has('bank_company'))
                                       <span class="text-danger">{{ $errors->first('bank_company') }}</span>
                                   @endif
                     </div>
 
                 <div class="form-group">
-                        <label for="status">Status:</label>
-                        <input type="text" class="form-control" id="status" name="status" required autofocus>
-                        <p style="margin:1px;font-size:9px;">*No Score, Poor, Low, Fair, Good, Very Good, &nbspExcellent</p>
+                        <input type="hidden" class="form-control" id="status" name="status" required autofocus>
+                       <!-- <p style="margin:1px;font-size:9px;">*No Score, Poor, Low, Fair, Good, Very Good, &nbspExcellent</p>-->
                         @if ($errors->has('status'))
                                       <span class="text-danger">{{ $errors->first('status') }}</span>
                                   @endif
                     </div>
                     
-                    <div class="form-group" style="margin-top:44px;">
+                    <div class="form-group">
                         <label for="contactNumber">Contact Number:</label>
                         <input type="tel" class="form-control" placeholder="Contact Number" id="handphone_number" name="handphone_number" 
                         pattern="[0-9]{3}-[0-9]{7}" required autofocus>
@@ -88,10 +85,8 @@
                         <input type="number" id="type" class="form-control" name="type"  value="2" min="2" max="2">
                         <p style="margin:1px;font-size:9px;">*2 = Agent</p>
                     </div>
-</div>
-                    <!--Column 3-->
-                    <div class="column" style=" float: left;width: 20%;margin-left:50px; padding-top:32px;"  required autofocus>
-                    <div class="form-group" >
+
+                    <div class="form-group" style="margin-top:20px;">
                         <label for="password">Password:</label>
                         <input type="password" class="form-control" placeholder="Password" id="password" name="password"  required autofocus>
                         @if ($errors->has('password'))
@@ -102,7 +97,6 @@
                     <div class="form-group" style="text-align:right;"><br>
                         <button  type="submit" class="btn btn-primary">Submit</button>
                     </div>
-</div>
 
                 </form>
 </div>
