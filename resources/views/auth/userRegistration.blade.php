@@ -36,7 +36,7 @@
                     <div class="form-group">
                         <label for="contactNumber">Contact Number:</label>
                         <input type="tel" class="form-control" placeholder="Contact Number" id="handphone_number" name="handphone_number" 
-                        pattern="[0-9]{3}-[0-9]{7}" required autofocus>
+                        pattern="[0-9]{3}-[0-9]{7}|[0-9]{3}-[0-9]{8}" required autofocus>
                         <p style="margin:1px;font-size:9px;">*Format: 123-4567890</p>
                         @if ($errors->has('handphone_number'))
                                       <span class="text-danger">{{ $errors->first('handphone_number') }}</span>
@@ -57,10 +57,10 @@
                   
                     <div class="form-group">
                         <label for="gender">Gender:</label><br>
-                        <input type="radio" id="male" name="gender"
+                        <input type="radio" id="gender" name="gender" name="gender" value="Male"
                         style="vertical-align: middle; margin-bottom:2px;">
                         <label for="Male" style="font-size:14px;">Male</label>&nbsp
-                        <input type="radio" id="female" name="gender"
+                        <input type="radio" id="gender" name="gender"name="gender" value="Female"
                         style="vertical-align: middle;margin-bottom:2px;margin-left:5px;">
                         <label for="femela" style="font-size:14px;">Female</label>
                     </div>

@@ -28,7 +28,7 @@ Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.pos
 Route::get('registration', [AuthController::class, 'registration'])->name('register');
 Route::get('userRegistration', [AuthController::class, 'userRegistration'])->name('user.register');
 Route::get('agent-registration', [AuthController::class, 'agentRegistration'])->name('agent.register');
-Route::post('post-registration', [AuthController::class, 'postUserRegistration'])->name('register.post'); 
+Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
 
 //Route for manage details
 Route::get('agent-edit', [AuthController::class, 'editAgent'])->name('agent.edit');

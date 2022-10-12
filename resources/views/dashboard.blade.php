@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card" style="margin-top:20px;">
                 @if(auth()->user()->isAdmin())
                 <div class="card-header">{{ __('Admin Dashboard') }}</div>
   
@@ -18,8 +18,6 @@
   
                    You are Logged In
                     
-                    <a class="nav-link" href="{{ route('agent.register') }}">Register an agent here!</a>
-                    <a class="nav-link" href="{{ route('user.register') }}">Register new member here!</a>
                 </div>
                 @elseif(auth()->user()->isAgent())
                 <div class="card-header">{{ __('Agent Dashboard') }}</div>
@@ -33,7 +31,7 @@
   
                     You are Logged In as an agent. 
                     
-                    <a class="nav-link" href="{{ route('user.register') }}">Register new member here!</a>
+                    <a class="nav-link" href="#">Register new member here!</a>
                  
                 </div>
                 @endif
