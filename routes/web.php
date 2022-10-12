@@ -33,7 +33,7 @@ Route::post('post-registration', [AuthController::class, 'postRegistration'])->n
 //Route for manage details
 Route::get('agent-edit', [AuthController::class, 'editAgent'])->name('agent.edit');
 Route::get('member-edit', [AuthController::class, 'editMember'])->name('member.edit');
-Route::get('member-update', [AuthController::class, 'updateMember'])->name('member.update');
+Route::get('member-update', [AuthController::class, 'update'])->name('member.update');
 Route::get('agent-update', [AuthController::class, 'updateAgent'])->name('agent.update');
 Route::get('view-users',[AuthController::class, 'viewUser'])->name('user.view');
 
