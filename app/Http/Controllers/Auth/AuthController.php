@@ -31,10 +31,6 @@ class AuthController extends Controller
 
     }
 
-    public function updateAgent(){
-        return view('pages.UpdateAgent');
-    }
-
     public function postLogin(Request $request){
 
         $request->validate([
@@ -92,21 +88,28 @@ class AuthController extends Controller
         ]);
     }
 
-    public function view()
+    public function viewAgent()
     {
-        $viewUsers = User::all();
-        return view("auth.showUser")->with("users",$viewUsers);
+        $users = DB::table('users')->select('users.*')->where('type','2')->get();
+        return view("pages.showAgent")->with(["users" => $users]);
+    }
+
+    public function viewMember()
+    {
+        $users = User::all()->where('type','1');
+        return view("pages.showMember")->with(["users" => $users]);
     }
 
     public function editMember($id)
     {
-        $users =User::all()->where('id',$id); 
-        Return view('pages.editUser')->with(["users" => $users]);
+        $users = User::all()->where('id',$id);
+
+        return view('pages.editMember')->with(["users" => $users]);
     }
 
     public function editAgent($id)
     {
-        $users = User::find('id',$id);
+        $users = User::all()->where('id',$id);
 
         return view('pages.editAgent')->with(["users" => $users]);
     }
@@ -135,8 +138,6 @@ class AuthController extends Controller
         $users->ic = $r->ic;
         $users->bank_account_number = $r->bank_account_number;
         $users->bank_company = $r->bank_company;
-
-       // Return redirect()->route('');
     }
 
     public function logout()

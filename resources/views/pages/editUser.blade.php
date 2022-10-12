@@ -9,7 +9,7 @@
             <br>
             <div class="column" style=" float: left; width: 20%;">
              <h5>Update Members</h5>
-                 <form method="POST" action="{{ route('member.update') }}">
+                 <form method="POST" action="{{ route('member.edit') }}">
                     {{ csrf_field() }}
                     @foreach($users as $user)
                     <div class="form-group">

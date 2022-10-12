@@ -30,12 +30,11 @@ Route::get('userRegistration', [AuthController::class, 'userRegistration'])->nam
 Route::get('agent-registration', [AuthController::class, 'agentRegistration'])->name('agent.register');
 Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
 
-//Route for manage details
-Route::get('agent-edit', [AuthController::class, 'editAgent'])->name('agent.edit');
-Route::get('member-edit', [AuthController::class, 'editMember'])->name('member.edit');
-Route::get('member-update', [AuthController::class, 'update'])->name('member.update');
-Route::get('agent-update', [AuthController::class, 'updateAgent'])->name('agent.update');
-Route::get('view-users',[AuthController::class, 'viewUser'])->name('user.view');
+//Route for editing and updating users' information
+Route::get('agent-edit/{id}', [AuthController::class, 'editAgent'])->name('agent.edit');
+Route::get('member-edit/{id}', [AuthController::class, 'editMember'])->name('member.edit');
+Route::get('view-agent',[AuthController::class, 'viewAgent'])->name('agent.view');
+Route::get('view-member',[AuthController::class, 'viewMember'])->name('member.view');
 
 //Route::get('view-agent', [AuthController::class, 'viewAgent'])->name('agent.view');
 
