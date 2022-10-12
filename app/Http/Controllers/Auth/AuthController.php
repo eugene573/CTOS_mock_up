@@ -31,6 +31,10 @@ class AuthController extends Controller
 
     }
 
+    public function updateMember(){
+        return view('pages.UpdateUser');
+    }
+
     public function postLogin(Request $request){
 
         $request->validate([

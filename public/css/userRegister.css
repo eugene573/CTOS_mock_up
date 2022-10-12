@@ -10,6 +10,10 @@ input:focus{
     transition: all ease-in-out .15s;
 }
 
+label{
+    font-weight: bold;
+}
+
 h5{
     font-size:large;
 }

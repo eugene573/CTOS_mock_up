@@ -57,10 +57,10 @@
                   
                     <div class="form-group">
                         <label for="gender">Gender:</label><br>
-                        <input type="radio" id="gender" name="male"
+                        <input type="radio" id="male" name="gender"
                         style="vertical-align: middle; margin-bottom:2px;">
                         <label for="Male" style="font-size:14px;">Male</label>&nbsp
-                        <input type="radio" id="gender" name="female"
+                        <input type="radio" id="female" name="gender"
                         style="vertical-align: middle;margin-bottom:2px;margin-left:5px;">
                         <label for="femela" style="font-size:14px;">Female</label>
                     </div>

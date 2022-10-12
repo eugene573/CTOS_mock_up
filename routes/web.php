@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 
 /*
@@ -32,8 +31,12 @@ Route::get('agent-registration', [AuthController::class, 'agentRegistration'])->
 Route::post('post-registration', [AuthController::class, 'postUserRegistration'])->name('register.post'); 
 
 //Route for manage details
-//Route::get('agent-update', [AgentController::class, 'updateAgent'])->name('agent.update');
-Route::get('user-update', [UserController::class, 'updateUser'])->name('user.update');
+Route::get('agent-edit', [AuthController::class, 'editAgent'])->name('agent.edit');
+Route::get('member-edit', [AuthController::class, 'editMember'])->name('member.edit');
+Route::get('member-update', [AuthController::class, 'updateMember'])->name('member.update');
+Route::get('view-users',[AuthController::class, 'viewUser'])->name('user.view');
+
+//Route::get('view-agent', [AuthController::class, 'viewAgent'])->name('agent.view');
 
 Route::get('dashboard', [AuthController::class, 'dashboard']); 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
