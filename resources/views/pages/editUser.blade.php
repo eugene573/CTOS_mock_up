@@ -9,23 +9,19 @@
             <br>
             <div class="column" style=" float: left; width: 20%;">
              <h5>Update Members</h5>
-                 <form method="POST" action="{{ route('member.edit') }}">
+                 <form method="POST" action="{{ route('member.update') }}">
                     {{ csrf_field() }}
-              
+                    @foreach($users as $user)
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input type="text" class="form-control" placeholder="Enter Full Name" id="name" name="name"  required autofocus>
-                        @if ($errors->has('name'))
-                                      <span class="text-danger">{{ $errors->first('name') }}</span>
-                                  @endif
+                        <input type="text" class="form-control"  value="{{$user->name}}" id="name" name="name"  required autofocus>
+                        <input type="hidden" name="id" id="id"
+                value="{{$user->id}}">
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="email" class="form-control"placeholder="Email" id="email" name="email" required autofocus>
-                        @if ($errors->has('email'))
-                                      <span class="text-danger">{{ $errors->first('email') }}</span>
-                                  @endif
+                        <input type="email" class="form-control" value="{{$user->email}}" id="email" name="email" required autofocus>
                     </div>
                     
                     <div class="form-group">
@@ -41,46 +37,35 @@
                     <div class="form-group">
                         <label for="ic">IC Number:</label>
                         <input type="text" class="form-control" placeholder="IC eg. 991114-07-7777" id="ic" name="ic"
-                        pattern="[0-9]{6}-[0-9]{2}-[0-9]{4}"  required autofocus>
-                        @if ($errors->has('ic'))
-                                      <span class="text-danger">{{ $errors->first('ic') }}</span>
-                                  @endif
+                        pattern="[0-9]{6}-[0-9]{2}-[0-9]{4}"  value="{{$user->ic}}" required autofocus>
                     </div> 
+
                     <div class="form-group"style="margin-top:20px;">
                         <label for="bankAccount">Bank Account Number:</label>
-                        <input type="text" class="form-control" placeholder="Enter Bank Account number" id="bank_account_number" name="bank_account_number"  required autofocus>
-                        @if ($errors->has('bank_account_number'))
-                                      <span class="text-danger">{{ $errors->first('bank_account_number') }}</span>
-                                  @endif
+                        <input type="text" class="form-control" placeholder="Enter Bank Account number" id="bank_account_number" name="bank_account_number" 
+                        value="{{$user->bank_account_number}}" required autofocus>
                     </div>
                     </div>
         <!--Column 2-->
                 <div class="column" style=" float: left;width: 20%;margin-left:50px; padding-top:32px;"  required autofocus>
                 <div class="form-group">
                         <label for="bankCompany">Bank Company:</label>
-                        <input type="text" class="form-control" placeholder="Enter Bank Company" id="bank_company" name="bank_company"  required autofocus>
-                        @if ($errors->has('bank_company'))
-                                      <span class="text-danger">{{ $errors->first('bank_company') }}</span>
-                                  @endif
+                        <input type="text" class="form-control" placeholder="Enter Bank Company" 
+                        id="bank_company" name="bank_company" value="{{$user->bank_company}}"  required autofocus>
                     </div>
 
                 <div class="form-group">
                         <label for="status">Status:</label>
-                        <input type="text" class="form-control" id="status" name="status" required autofocus>
+                        <input type="text" class="form-control" id="status" name="status" 
+                        value="{{$user->status}}" required autofocus>
                         <p style="margin:1px;font-size:9px;">*No Score, Poor, Low, Fair, Good, Very Good, &nbspExcellent</p>
-                        @if ($errors->has('status'))
-                                      <span class="text-danger">{{ $errors->first('status') }}</span>
-                                  @endif
                     </div>
                     
                     <div class="form-group" style="margin-top:44px;">
                         <label for="contactNumber">Contact Number:</label>
                         <input type="tel" class="form-control" placeholder="Contact Number" id="handphone_number" name="handphone_number" 
-                        pattern="[0-9]{3}-[0-9]{7}" required autofocus>
+                        pattern="[0-9]{3}-[0-9]{7}" value="{{$user->handphone_number}}" required autofocus>
                         <p style="margin:1px;font-size:9px;">*Format: 123-4567890</p>
-                        @if ($errors->has('handphone_number'))
-                                      <span class="text-danger">{{ $errors->first('handphone_number') }}</span>
-                       @endif
                     </div> 
 
                     <div class="form-group">
@@ -93,10 +78,8 @@
                     <div class="column" style=" float: left;width: 20%;margin-left:50px; padding-top:32px;"  required autofocus>
                     <div class="form-group" >
                         <label for="password">Password:</label>
-                        <input type="password" class="form-control" placeholder="Password" id="password" name="password"  required autofocus>
-                        @if ($errors->has('password'))
-                                      <span class="text-danger">{{ $errors->first('password') }}</span>
-                                  @endif
+                        <input type="password" class="form-control" placeholder="Password" 
+                        id="password" name="password" value="{{$user->password}}" required autofocus>
                     </div>
 
                     <div class="form-group" style="text-align:right;"><br>
