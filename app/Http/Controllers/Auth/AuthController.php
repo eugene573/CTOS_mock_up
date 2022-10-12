@@ -104,16 +104,16 @@ class AuthController extends Controller
 
     public function editMember($id)
     {
-        $members = User::all()->where('id',$id);
+        $users = User::find('id',$id);
 
-        return view('auth.editMember')->with('users',$members);
+        return view('pages.editMember')->with(["users" => $users]);
     }
 
     public function editAgent($id)
     {
-        $agents = User::all()->where('id',$id);
+        $users = User::find('id',$id);
 
-        return view('auth.editAgent')->with('users',$agents);
+        return view('pages.editAgent')->with(["users" => $users]);
     }
 
     public function update(Request $r)
