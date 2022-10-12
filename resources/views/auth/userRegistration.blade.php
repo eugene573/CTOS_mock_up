@@ -37,7 +37,7 @@
                         <label for="contactNumber">Contact Number:</label>
                         <input type="tel" class="form-control" placeholder="Contact Number" id="handphone_number" name="handphone_number" 
                         pattern="[0-9]{3}-[0-9]{7}|[0-9]{3}-[0-9]{8}" required autofocus>
-                        <p style="margin:1px;font-size:9px;">*Format: 123-4567890</p>
+                        <p style="margin:1px;font-size:9px;">*Format: 123-4567890/123-45678901</p>
                         @if ($errors->has('handphone_number'))
                                       <span class="text-danger">{{ $errors->first('handphone_number') }}</span>
                        @endif

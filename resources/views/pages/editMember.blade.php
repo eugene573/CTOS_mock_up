@@ -9,7 +9,7 @@
             <br>
             <div class="column" style=" float: left; width: 20%;">
              <h5>Update Members</h5>
-                 <form method="POST" action="{{ route('member.edit') }}">
+                 <form method="POST" action="{{ route('member.edit',['id' => $users]) }}">
                     {{ csrf_field() }}
                     @foreach($users as $user)
                     <div class="form-group">
@@ -64,8 +64,8 @@
                     <div class="form-group" style="margin-top:44px;">
                         <label for="contactNumber">Contact Number:</label>
                         <input type="tel" class="form-control" placeholder="Contact Number" id="handphone_number" name="handphone_number" 
-                        pattern="[0-9]{3}-[0-9]{7}" value="{{$user->handphone_number}}" required autofocus>
-                        <p style="margin:1px;font-size:9px;">*Format: 123-4567890</p>
+                        pattern="[0-9]{3}-[0-9]{7}|[0-9]{3}-[0-9]{8}" value="{{$user->handphone_number}}" required autofocus>
+                        <p style="margin:1px;font-size:9px;">*Format: 123-4567890/123-45678901</p>
                     </div> 
 
                     <div class="form-group">
@@ -86,8 +86,9 @@
                         <button  type="submit" class="btn btn-primary">Submit</button>
                     </div>
 </div>
-
+   @endforeach
                 </form>
+             
 </div>
 </div>
 </div>
