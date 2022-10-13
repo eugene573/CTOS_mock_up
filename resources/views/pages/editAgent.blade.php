@@ -9,7 +9,7 @@
             <br>
             <div class="column" style=" float: left; width: 20%;">
              <h5>Update Agent</h5>
-                 <form method="POST" action="#">
+                 <form method="POST" action="{{ route('agent.edit') }}">
                     {{ csrf_field() }}
               
                     <div class="form-group">
