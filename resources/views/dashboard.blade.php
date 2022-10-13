@@ -31,10 +31,25 @@
   
                     You are Logged In as an agent. 
                     
-                    <a class="nav-link" href="#">Register new member here!</a>
+                    
                  
                 </div>
-                @endif
+               
+                @elseif(auth()->user()->isMember())
+                <div class="card-header">{{ __('Members Dashboard') }}</div>
+  
+                    <div class="card-body">
+                        @if (session('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        You are Logged In as an member. 
+                        
+                      
+                    </div>
+                    @endif
             </div>
         </div>
     </div>
