@@ -7,7 +7,6 @@
         <table class="table table-bordered">
             <thread>
                 <tr>
-                    <td>ID</td>
                     <td>Name</td>
                     <td>Email</td>
                     <td>IC</td>
@@ -22,7 +21,6 @@
             <tbody>
                 @foreach($users as $viewMember)
                 <tr>
-                    <td>{{ $viewMember->id }}</td>
                     <td>{{ $viewMember->name }}</td>
                     <td>{{ $viewMember->email }}</td>
                     <td>{{ $viewMember->ic }}</td>
