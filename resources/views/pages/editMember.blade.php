@@ -8,10 +8,11 @@
           <div class="col-md-10">
             <br>
             <div class="column" style=" float: left; width: 20%;">
-             <h5>Update Members</h5>
-                 <form method="POST" action="{{ route('member.edit',['id' => $users]) }}">
+             <h5>Update Members</h5> 
+               @foreach($users as $user)
+                 <form method="POST" action="{{ route('user.update',['id'=>$user->id])  }}">
                     {{ csrf_field() }}
-                    @foreach($users as $user)
+                 
                     <div class="form-group">
                         <label for="name">Name:</label>
                         <input type="text" class="form-control"  value="{{$user->name}}" id="name" name="name"  required autofocus>
@@ -27,11 +28,11 @@
                     <div class="form-group">
                         <label for="gender">Gender:</label><br>
                         <input type="radio" id="male" name="gender"
-                        style="vertical-align: middle; margin-bottom:2px;">
+                        style="vertical-align: middle; margin-bottom:2px;" value="Male" required>
                         <label for="Male" style="font-size:14px;">Male</label>&nbsp
                         <input type="radio" id="female" name="gender"
-                        style="vertical-align: middle;margin-bottom:2px;margin-left:5px;">
-                        <label for="femela" style="font-size:14px;">Female</label>
+                        style="vertical-align: middle;margin-bottom:2px;margin-left:5px;" value="Female" required>
+                        <label for="female" style="font-size:14px;">Female</label>
                     </div>
 
                     <div class="form-group">
@@ -86,9 +87,9 @@
                         <button  type="submit" class="btn btn-primary">Submit</button>
                     </div>
 </div>
-   @endforeach
+
                 </form>
-             
+         @endforeach       
 </div>
 </div>
 </div>

@@ -96,8 +96,8 @@
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <li><a href="{{ route('agent.register') }}">Register Agent</a></li>
             <li><a href="{{ route('user.register') }}">Register Member</a></li>
-            <li><a href="#">Agents</a></li>
-            <li><a href="#">Members</a></li>
+            <li><a href="{{ route('agent.view') }}">Agents</a></li>
+            <li><a href="{{ route('member.view') }}">Members</a></li>
         </ul>
             </div>
 
