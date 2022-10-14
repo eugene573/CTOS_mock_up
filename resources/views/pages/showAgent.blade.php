@@ -1,4 +1,5 @@
 @extends('layout')
+@include('sidenav')
 @section('content')
 <div class="row">
     <div class="col-sm-3"></div>
