@@ -6,6 +6,8 @@
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>    
             <li><a href="{{ route('agent.register') }}">Register Agent</a></li>
             <li><a href="{{ route('user.register') }}">Register Member</a></li> 
+            <li><a href="{{ route('agent.show') }}">Agents Information</a></li> 
+            <li><a href="{{ route('member.show') }}">Members Information</a></li>
             <li><a href="{{ route('agent.view') }}">Agents List</a></li> 
             <li><a href="{{ route('member.view') }}">Members List</a></li>
             <li><a href="#">BlackList</a></li>
@@ -16,8 +18,9 @@
             <ul style="padding-left:10px;">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>    
             <li><a href="{{ route('user.register') }}">Register Member</a></li> 
+            <li><a href="{{ route('member.show') }}">Members Information</a></li>
             <li><a href="{{ route('agent.view') }}">Agents List</a></li> 
-            <li><a href="{{ route('member.show') }}">Members List</a></li>
+            <li><a href="{{ route('member.view') }}">Members List</a></li>
             <li><a href="#">BlackList</a></li>
             </ul>
             </div>
