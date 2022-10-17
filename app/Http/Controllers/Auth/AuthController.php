@@ -114,7 +114,6 @@ class AuthController extends Controller
     public function editMember($id)
     {
         $users = User::all()->where('id',$id);
-
         return view('pages.editMember')->with(["users" => $users]);
     }
 
