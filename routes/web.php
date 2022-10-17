@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Pages\BlacklistController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 
