@@ -18,7 +18,7 @@ h2 {
             <h2>Profile</h2>
             </div>
             <div class="card-body"> 
-        <div class="column" style=" float: left;padding-left:90px;">
+        <div class="column" style=" float: left;padding-left:90px; margin-top:60px;">
             <div class="col-md-5">
             <div class="d-flex flex-column align-items-center text-center py-5">
             @foreach($users as $user)

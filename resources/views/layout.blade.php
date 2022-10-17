@@ -111,13 +111,12 @@
                             </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" style="margin-top:3px;" href="{{ route('logout') }}">Logout</a>
+                                <a class="nav-link" href="{{ route('logout') }}">Logout</a>
                             </li>
                         @endguest
                         <!--Sample profile-->
                         <li class="nav-item">
-                                <a class="nav-link" href="{{route('profile.view')}}">    <img src="img/person1.jpg" 
-                                height="30px" width="30px" alt="" class="pull-left img-circle profile"> </a>
+                                <a class="nav-link" href="{{route('profile.view')}}"> Profile </a>
                         </li>
                     </ul>
         

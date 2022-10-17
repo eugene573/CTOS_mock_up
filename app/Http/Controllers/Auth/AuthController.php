@@ -13,10 +13,7 @@ use DB;
 // here is the code for settling login,register,logout function
 class AuthController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
     public function index(){
 
         return view('auth.login');
@@ -48,7 +45,7 @@ class AuthController extends Controller
             return redirect()->intended('dashboard')->withSuccess('You have successfully logged in!');
         }
 
-        return redirect('login')->withSuccess('Your password or email is incorrect. Please re-enter again.');
+        return redirect('login')->with('success','Your password or email is incorrect. Please re-enter again.');
 
     }
 

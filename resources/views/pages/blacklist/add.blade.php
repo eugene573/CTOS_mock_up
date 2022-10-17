@@ -1,12 +1,20 @@
 @extends('layout')
 @include('sidenav')
 @section('content')
-<main class="login-form">
-  <div class="cotainer">
+<style>
+.card-header{
+    font-size:16px;
+    font-weight:bold;
+    }   
+
+</style>
+
+<main class="register-form">
+  <div class="cotainer"><br>
       <div class="row justify-content-center">
           <div class="col-md-8">
               <div class="card">
-                  <div class="card-header">Add member to blacklist</div>
+                  <div class="card-header">Add Member to Blacklist</div>
                   <div class="card-body">
   
                       <form action="{{ route('blacklist.post') }}" method="POST">
@@ -24,7 +32,8 @@
                           <div class="form-group row">
                               <label for="reason" class="col-md-4 col-form-label text-md-right">Reason</label>
                               <div class="col-md-6">
-                                  <input type="text" id="reason" class="form-control" name="reason" required autofocus>
+                                  <textarea type="text" id="reason" class="form-control" name="reason"
+                                  style="height:100px"  required autofocus></textarea >
                                   @if ($errors->has('reason'))
                                       <span class="text-danger">{{ $errors->first('reason') }}</span>
                                   @endif
@@ -39,7 +48,7 @@
                           </div>
   
                           <div class="col-md-6 offset-md-4">
-                              <button type="submit" class="btn btn-primary">
+                              <button type="submit" class="btn btn-primary" style="float:right;">
                                   Add
                               </button>
                           </div>
