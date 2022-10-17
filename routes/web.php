@@ -39,8 +39,8 @@ Route::get('show-member',[AuthController::class, 'showMember'])->name('member.sh
 Route::get('view-agent',[AuthController::class, 'viewAgent'])->name('agent.view');
 Route::get('view-member',[AuthController::class, 'viewMember'])->name('member.view');
 
-//Route::get('view-agent', [AuthController::class, 'viewAgent'])->name('agent.view');
 
+Route::get('profile', [AuthController::class, 'profile'])->name('profile.view'); 
 Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard'); 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
