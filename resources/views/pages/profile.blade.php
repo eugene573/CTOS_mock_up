@@ -2,11 +2,12 @@
 @include('sidenav')
 @section('content')
 <style>
+ @import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
 *{
    margin:0;
 }
-.title {
-    font-family: "angle", serif; 
+h2 {
+    font-family: 'Noto Serif', serif; 
 }
 </style>
 <br>
