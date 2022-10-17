@@ -21,8 +21,9 @@ h2 {
         <div class="column" style=" float: left;padding-left:90px;">
             <div class="col-md-5">
             <div class="d-flex flex-column align-items-center text-center py-5">
-            <label class="font-weight-bold" style="width:90px;">Hello world</label>
-            <label class="text-black-50">helloword@mail.com.my</label>
+            @foreach($users as $user)
+            <label class="font-weight-bold" style="width:90px;">{{ $user->name }}</label>
+            <label class="text-black-50">{{ $user->email }}</label>
             </div>
         </div>
 </div>
@@ -35,7 +36,7 @@ h2 {
                 </div>
                 <table>
                     <tbody>
-                    @foreach($users as $user)
+                   
                         <tr>
                             <td>Name</td>
                             <td>:&nbsp</td>
