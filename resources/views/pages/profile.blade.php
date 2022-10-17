@@ -35,46 +35,48 @@ h2 {
                 </div>
                 <table>
                     <tbody>
+                    @foreach($users as $user)
                         <tr>
                             <td>Name</td>
                             <td>:&nbsp</td>
-                            <td>ImDezCode</td>
+                            <td>{{ $user->name }}</td>
                         </tr>
                         <tr>
                             <td>Email</td>
                             <td>:&nbsp </td>
-                            <td>imdezcode@gmail.com</td>
+                            <td>{{ $user->email }}</td>
                         </tr>
                         <tr>
                             <td style="width:200px;">Phone Number</td>
                             <td>:&nbsp </td>
-                            <td></td>
+                            <td>{{ $user->handphone_number }}</td>
                         </tr>
                         <tr>
                             <td>IC</td>
                             <td>:&nbsp </td>
-                            <td></td>
+                            <td>{{ $user->ic }}</td>
                         </tr>
                         <tr>
                             <td>Bank Account Number</td>
                             <td>:&nbsp </td>
-                            <td></td>
+                            <td>{{ $user->bank_account_number }}</td>
                         </tr>
                         <tr>
                             <td>Bank Company</td>
                             <td>:&nbsp </td>
-                            <td></td>
+                            <td>{{ $user->bank_company }}</td>
                         </tr>
                         <tr>
                             <td>Gender</td>
                             <td>:&nbsp </td>
-                            <td></td>
+                            <td>{{ $user->gender}}</td>
                         </tr>
                         <tr>
                             <td>Status</td>
                             <td>:&nbsp </td>
-                            <td></td>
+                            <td>{{ $user->status}}</td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 </div>
