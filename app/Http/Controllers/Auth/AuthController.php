@@ -13,6 +13,10 @@ use DB;
 // here is the code for settling login,register,logout function
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(){
 
         return view('auth.login');
@@ -162,6 +166,7 @@ class AuthController extends Controller
         return redirect('login');
     }
     public function profile(){
-        return view('pages.profile');
+        $users = User::all()->where('id','=',Auth::id());
+        return view('pages.profile')->with(["users" => $users]);
     }
 }
