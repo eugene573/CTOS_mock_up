@@ -2,7 +2,12 @@
 @include('sidenav')
 @section('content')
 <style>
-
+*{
+   margin:0;
+}
+.title {
+    font-family: "angle", serif; 
+}
 </style>
 <br>
 <div class="profile">
@@ -27,37 +32,50 @@
                     <h4 class="text-left" style="width:220px;">Profile Settings</h4>
                 
                 </div>
-                    <div class="col-md-12">
-                    <label class="name">Name:</label>
-                </div>
-
-                    <div class="col-md-12">
-                    <label class="handphone_number">Phone Number:</label>
-                </div>
-                    
-                <div class="col-md-12">
-                    <label class="email">Email:</label>
-                 </div>
-                    
-                <div class="col-md-12">
-                    <label class="ic">IC:</label>
-                  </div>
-                   
-                <div class="col-md-12">
-                    <label class="bank_account_number">Bank Account Number:</label>
-                </div>
-
-                <div class="col-md-12">
-                    <label class="bank_company">Bank Company:</label>
-                </div>
-                 
-                <div class="col-md-12">
-                  <label class="gender">Gender:</label>
-                </div>
-            
-                <div class="col-md-12">
-                 <label class="status">Status:</label>
-                </div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Name</td>
+                            <td>:&nbsp</td>
+                            <td>ImDezCode</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>:&nbsp </td>
+                            <td>imdezcode@gmail.com</td>
+                        </tr>
+                        <tr>
+                            <td style="width:200px;">Phone Number</td>
+                            <td>:&nbsp </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>IC</td>
+                            <td>:&nbsp </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Bank Account Number</td>
+                            <td>:&nbsp </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Bank Company</td>
+                            <td>:&nbsp </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td>:&nbsp </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Status</td>
+                            <td>:&nbsp </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
                 </div>
 
             </div>
