@@ -88,6 +88,18 @@ class AuthController extends Controller
         ]);
     }
 
+    public function viewAgent()
+    {
+        $users = DB::table('users')->select('users.*')->where('type','2')->get();
+        return view("pages.viewAgent")->with(["users" => $users]);
+    }
+
+    public function viewMember()
+    {
+        $users = User::all()->where('type','1');
+        return view("pages.userRegistration")->with(["users" => $users]);
+    }
+
     public function showAgent()
     {
         $users = DB::table('users')->select('users.*')->where('type','2')->get();

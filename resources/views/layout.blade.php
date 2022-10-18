@@ -90,6 +90,7 @@
             }
 
         </style>
+        <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">
     </head>
 
     <body>
@@ -111,7 +112,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 @if(Auth::check())
-                <a class="topnav-link ml-2" href="#"
+                <a class="topnav-link ml-2" href="{{ route('blacklist.view') }}"
                  style="color: black;"> BlackLists </a>
                  @else
                  
