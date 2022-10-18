@@ -13,7 +13,6 @@ use DB;
 // here is the code for settling login,register,logout function
 class AuthController extends Controller
 {
-
     public function index(){
 
         return view('auth.login');
@@ -45,7 +44,7 @@ class AuthController extends Controller
             return redirect()->intended('dashboard')->withSuccess('You have successfully logged in!');
         }
 
-        return redirect('login')->with('success','Your password or email is incorrect. Please re-enter again.');
+        return redirect('login')->with('error', 'Email or password is incorrect. Please try again.');;
 
     }
 
@@ -89,17 +88,6 @@ class AuthController extends Controller
         ]);
     }
 
-    public function viewAgent()
-    {
-        $users = DB::table('users')->select('users.*')->where('type','2')->get();
-        return view("pages.viewAgent")->with(["users" => $users]);
-    }
-
-    public function viewMember()
-    {
-        $users = User::all()->where('type','1');
-        return view("pages.viewMember")->with(["users" => $users]);
-    }
     public function showAgent()
     {
         $users = DB::table('users')->select('users.*')->where('type','2')->get();
@@ -111,9 +99,11 @@ class AuthController extends Controller
         $users = User::all()->where('type','1');
         return view("pages.showMember")->with(["users" => $users]);
     }
+
     public function editMember($id)
     {
         $users = User::all()->where('id',$id);
+
         return view('pages.editMember')->with(["users" => $users]);
     }
 
@@ -150,8 +140,13 @@ class AuthController extends Controller
         $users->bank_company = $r->bank_company;
         $users->save();
 
-        Session::flash('success',"User was update successfully!");
-        Return redirect()->route('dashboard');
+        Session::flash('success',"User was updated successfully!");
+        return redirect()->route('dashboard');
+    }
+
+    public function profile(){
+        $users = User::all()->where('id','=',Auth::id());
+        return view('pages.profile')->with(["users" => $users]);
     }
 
     public function logout()
@@ -160,9 +155,5 @@ class AuthController extends Controller
         Auth::logout();
 
         return redirect('login');
-    }
-    public function profile(){
-        $users = User::all()->where('id','=',Auth::id());
-        return view('pages.profile')->with(["users" => $users]);
     }
 }

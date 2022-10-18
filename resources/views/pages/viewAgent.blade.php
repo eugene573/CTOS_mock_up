@@ -5,7 +5,7 @@
     <div class="col-sm-3"></div>
     <div class="col-sm-6">
         <br><br>
-        <h3>Agents Information</h3>
+        <h3>Agent Lists</h3>
         <table class="table table-bordered">
             <thread>
                 <tr>
@@ -15,7 +15,6 @@
                     <td>Handphone Number</td>
                     <td>Gender</td>
                     <td>Type</td>
-                    <td></td>
                 </tr>
             </thread>
             <tbody>
@@ -27,7 +26,6 @@
                     <td>{{ $viewAgent->handphone_number }}</td>
                     <td>{{ $viewAgent->gender }}</td>
                     <td>{{ $viewAgent->type }}</td>
-                    <td><a href="{{ route('agent.edit',['id'=>$viewAgent->id]) }}" class="btn btn-warning btn-xs">Edit</a> </td>
                 </tr>
                 @endforeach
             </tbody>

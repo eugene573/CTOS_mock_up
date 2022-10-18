@@ -111,7 +111,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 @if(Auth::check())
-                <a class="topnav-link ml-2" href="{{route('add.to.blacklist')}}"
+                <a class="topnav-link ml-2" href="#"
                  style="color: black;"> BlackLists </a>
                  @else
                  

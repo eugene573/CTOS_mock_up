@@ -19,8 +19,8 @@ label{
               <div class="card" style="height:450px;width:450px;">
                   <div class="card-header">Add Member to Blacklist</div>
                   <div class="card-body">
-  
-                      <form action="{{ route('blacklist.post') }}" method="POST">
+                  @foreach($users as $user)
+                  <form action="{{ route('blacklist.post', ['id'=>$user->id]) }}" method="POST">
                           @csrf
                           <div class="form-group row">
                               <label for="user_name" class="col-md-4 col-form-label text-md-left"style="margin-right: -35px !important;">Member Name</label>
@@ -56,7 +56,7 @@ label{
                               </button>
                           </div>
                       </form>
-                        
+                      @endforeach
                   </div>
               </div>
           </div>
