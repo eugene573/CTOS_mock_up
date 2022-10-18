@@ -36,9 +36,7 @@ Route::get('member-edit/{id}', [AuthController::class, 'editMember'])->name('mem
 Route::post('update' ,[AuthController::class,'update'])->name('user.update');
 Route::get('show-agent',[AuthController::class, 'showAgent'])->name('agent.show');
 Route::get('show-member',[AuthController::class, 'showMember'])->name('member.show');
-//Route for user only can view others
-Route::get('view-agent',[AuthController::class, 'viewAgent'])->name('agent.view');
-Route::get('view-member',[AuthController::class, 'viewMember'])->name('member.view');
+
 
 //Route for handling matter of blacklisting
 Route::get('add-to-blacklist',[BlacklistController::class, 'addToBlacklist'])->name('add.to.blacklist');

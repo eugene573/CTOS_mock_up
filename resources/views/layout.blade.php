@@ -84,13 +84,19 @@
             .img-circle{
                 border-radius: 50%;
             }
+            .topnav-link:hover{
+                color: grey;
+                text-decoration: none;
+            }
 
         </style>
     </head>
 
     <body>
+  
     <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
         <div class="container">
+        @if(Auth::check())
         <span style="font-size:20px;cursor:pointer;margin-right:5px;margin-bottom:2px;" onclick="openNav()">&#9776;</span>
             <div id="mySideNav" class="sidenav">
             <ul style="padding-left:10px;">
@@ -98,13 +104,20 @@
             <li><a href="#">About Us</a></li> 
             </ul>
             </div>
+            @endif
         <!--TopNav-->
-            <a class="navbar-brand" href="{{ route('dashboard') }}"> CTOS Mock-Up</a>
+        <a class="navbar-brand" href="{{ route('dashboard') }}"> CTOS Mock-Up</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                @if(Auth::check())
+                <a class="topnav-link ml-2" href="{{route('add.to.blacklist')}}"
+                 style="color: black;"> BlackLists </a>
+                 @else
+                 
+                 @endif
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto">   
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">Login</a>
@@ -114,10 +127,13 @@
                                 <a class="nav-link" href="{{ route('logout') }}">Logout</a>
                             </li>
                         @endguest
+                        
                         <!--Sample profile-->
+                        @if(Auth::check())
                         <li class="nav-item">
                                 <a class="nav-link" href="{{route('profile.view')}}"> Profile </a>
                         </li>
+                        @endif
                     </ul>
         
                 </div>
