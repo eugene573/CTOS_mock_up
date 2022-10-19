@@ -20,7 +20,7 @@
             {
                 box-shadow: 0 2px 4px rgba(0,0,0,.04);
             }
-            .navbar-brand , .nav-link, .my-form, .login-form
+            .navbar-brand , .nav-link, .my-form, .login-form,.topnav-link
             {
                 font-family: Raleway, sans-serif;
             }
@@ -84,6 +84,9 @@
             .img-circle{
                 border-radius: 50%;
             }
+            .topnav-link{
+                font-size:16px;
+            }
             .topnav-link:hover{
                 color: grey;
                 text-decoration: none;
@@ -98,7 +101,7 @@
     <nav class="navbar navbar-expand-lg navbar-laravel" style=" background-image: linear-gradient(to right, #156184, #37758f,#4c8d99);">
         <div class="container">
         @if(Auth::check())
-        <span style="font-size:20px;cursor:pointer;margin-right:5px;margin-bottom:2px;" onclick="openNav()">&#9776;</span>
+        <span style="font-size:20px;cursor:pointer;margin-right:5px;margin-bottom:2px;color:white;" onclick="openNav()">&#9776;</span>
             <div id="mySideNav" class="sidenav">
             <ul style="padding-left:10px;">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>     
@@ -112,7 +115,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 @if(Auth::check())
-                <a class="topnav-link ml-2" href="{{ route('blacklist.view') }}"
+                <a class="topnav-link ml-3" href="{{ route('blacklist.view') }}"
                  style="color: white;"> BlackLists </a>
                  @else
                  

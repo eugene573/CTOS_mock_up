@@ -9,7 +9,6 @@
             <li><a href="{{ route('member.show') }}">Members Information</a></li>
             {{-- <li><a href="{{ route('agent.view') }}">Agents List</a></li> --}}
             {{-- <li><a href="{{ route('member.view') }}">Members List</a></li> --}}
-            <li><a href="{{ route('blacklist.view') }}">BlackList</a></li>
             </ul>
             </div>
             @elseif(auth()->user()->isAgent())
@@ -20,7 +19,6 @@
             <li><a href="{{ route('member.show') }}">Members Information</a></li>
             {{-- <li><a href="{{ route('agent.view') }}">Agents List</a></li> --}}
             {{-- <li><a href="{{ route('member.view') }}">Members List</a></li> --}}
-            <li><a href="{{ route('blacklist.view') }}">BlackList</a></li>
             </ul>
             </div>
             @elseif(auth()->user()->isMember())
@@ -29,7 +27,6 @@
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>     
             {{-- <li><a href="{{ route('agent.view') }}">Agents List</a></li> --}}
             {{-- <li><a href="{{ route('member.view') }}">Members List</a></li> --}}
-            <li><a href="{{ route('blacklist.view') }}">BlackList</a></li>
             </ul>
             </div>
             @endif
