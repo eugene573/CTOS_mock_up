@@ -9,7 +9,6 @@
 label{
     font-weight:bold;
 }
-
 </style>
 
 <main class="register-form">
@@ -22,16 +21,7 @@ label{
                   @foreach($users as $user)
                   <form action="{{ route('blacklist.post', ['id'=>$user->id]) }}" method="POST">
                           @csrf
-                          <div class="form-group row">
-                              <label for="user_name" class="col-md-4 col-form-label text-md-left"style="margin-right: -35px !important;">Member Name</label>
-                              <div class="col-md-7">
-                                  <input type="text" id="user_name" class="form-control" name="user_name" required autofocus>
-                                  @if ($errors->has('user_name'))
-                                      <span class="text-danger">{{ $errors->first('user_name') }}</span>
-                                  @endif
-                              </div>
-                          </div>
-  
+                          Why add {{ $user->name }} to Blacklist?
                           <div class="form-group row">
                               <label for="reason" class="col-md-4 col-form-label text-md-left"style="margin-right: -35px !important;">Reason</label>
                               <div class="col-md-7">
@@ -57,6 +47,11 @@ label{
                           </div>
                       </form>
                       @endforeach
+
+                      <div class="error-messeges" style="background-color:red;color:white;margin-top:15px;
+                        font-size:14px;padding-left:5px; width:max-content;">
+                      {!! session()->get('error') !!}
+                      </div>
                   </div>
               </div>
           </div>
