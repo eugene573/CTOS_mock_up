@@ -22,7 +22,7 @@ label{
                   <form action="{{ route('blacklist.post', ['id'=>$user->id]) }}" method="POST">
                           @csrf
                           Why add {{ $user->name }} to Blacklist?
-                          <div class="form-group row">
+                          <div class="form-group row" style="margin-top:10px;">
                               <label for="reason" class="col-md-4 col-form-label text-md-left"style="margin-right: -35px !important;">Reason</label>
                               <div class="col-md-7">
                                   <textarea type="text" id="reason" class="form-control" name="reason"
@@ -49,7 +49,7 @@ label{
                       @endforeach
 
                       <div class="error-messeges" style="background-color:red;color:white;margin-top:15px;
-                        font-size:14px;padding-left:5px; width:max-content;">
+                        font-size:14px;padding-left:5px;padding-right:5px; width:max-content;margin-top:50px;">
                       {!! session()->get('error') !!}
                       </div>
                   </div>
