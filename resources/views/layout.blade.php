@@ -113,7 +113,7 @@
                 </button>
                 @if(Auth::check())
                 <a class="topnav-link ml-2" href="{{ route('blacklist.view') }}"
-                 style="color: black;"> BlackLists </a>
+                 style="color: white;"> BlackLists </a>
                  @else
                  
                  @endif 
