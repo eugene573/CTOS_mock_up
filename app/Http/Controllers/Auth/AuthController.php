@@ -63,7 +63,7 @@ class AuthController extends Controller
         $data = $request->all();
         $check = $this->create($data);
 
-        return redirect('dashboard')->withSuccess('You have successfully logged in!');
+        return redirect('dashboard')->withSuccess('You have successfully registered!');
     }
 
     public function dashboard(){
@@ -83,7 +83,7 @@ class AuthController extends Controller
             'email' => $data['email'],
             'handphone_number' => $data['handphone_number'],
             'gender' => $data['gender'],
-            'status' => $data['status'],
+            'score' => $data['score'],
             'type' => $data['type']
         ]);
     }
@@ -162,7 +162,7 @@ class AuthController extends Controller
     }
 
     public function about(){
-        return view("pages.aboutUs");
+        return view("pages.aboutus");
     }
 
     public function logout()
