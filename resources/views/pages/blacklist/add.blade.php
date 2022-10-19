@@ -21,8 +21,10 @@ label{
                   @foreach($users as $user)
                   <form action="{{ route('blacklist.post', ['id'=>$user->id]) }}" method="POST">
                           @csrf
-                          Why add {{ $user->name }} to Blacklist?
-                          <div class="form-group row" style="margin-top:10px;">
+                          <div>
+                          Why add <b> {{ $user->name }} </b>to Blacklist?
+                        </div>
+                          <div class="form-group row" style="margin-top:15px;">
                               <label for="reason" class="col-md-4 col-form-label text-md-left"style="margin-right: -35px !important;">Reason</label>
                               <div class="col-md-7">
                                   <textarea type="text" id="reason" class="form-control" name="reason"
