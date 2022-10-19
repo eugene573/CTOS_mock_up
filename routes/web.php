@@ -46,6 +46,7 @@ Route::get('view-blacklist',[BlacklistController::class, 'viewBlacklist'])->name
 
 Route::get('profile', [AuthController::class, 'profile'])->name('profile.view'); 
 Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard'); 
+Route::get('about-ctos', [AuthController::class, 'about'])->name('about.us'); 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 //Route for providing support if user forget password

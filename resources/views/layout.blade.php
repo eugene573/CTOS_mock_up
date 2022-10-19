@@ -105,7 +105,7 @@
             <div id="mySideNav" class="sidenav">
             <ul style="padding-left:10px;">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>     
-            <li><a href="#">About Us</a></li> 
+            <li><a href="{{route('about.us')}}">About Us</a></li> 
             </ul>
             </div>
             @endif
@@ -117,6 +117,7 @@
                 @if(Auth::check())
                 <a class="topnav-link ml-3" href="{{ route('blacklist.view') }}"
                  style="color: white;"> BlackLists </a>
+                 <a class="topnav-link ml-3"href="{{route('about.us')}}" style="color: white;">About Us</a>
                  @else
                  
                  @endif 
