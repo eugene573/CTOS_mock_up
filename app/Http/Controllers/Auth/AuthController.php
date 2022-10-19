@@ -97,7 +97,7 @@ class AuthController extends Controller
     public function viewMember()
     {
         $users = User::all()->where('type','1');
-        return view("pages.userRegistration")->with(["users" => $users]);
+        return view("pages.viewMember")->with(["users" => $users]);
     }
 
     public function showAgent()

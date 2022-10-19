@@ -95,7 +95,7 @@
 
     <body>
   
-    <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
+    <nav class="navbar navbar-expand-lg navbar-laravel" style=" background-image: linear-gradient(to right, #156184, #37758f,#4c8d99);">
         <div class="container">
         @if(Auth::check())
         <span style="font-size:20px;cursor:pointer;margin-right:5px;margin-bottom:2px;" onclick="openNav()">&#9776;</span>
@@ -107,7 +107,7 @@
             </div>
             @endif
         <!--TopNav-->
-        <a class="navbar-brand" href="{{ route('dashboard') }}"> CTOS Mock-Up</a>
+        <a class="navbar-brand" href="{{ route('dashboard') }}" style="color:white;"> CTOS Mock-Up</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -116,23 +116,25 @@
                  style="color: black;"> BlackLists </a>
                  @else
                  
-                 @endif
+                 @endif 
+        <!--Login & Logout-->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto">   
+                    <ul class="navbar-nav ml-auto" >   
                         @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">Login</a>
+                       
+                            <li class="nav-item" >
+                                <a class="nav-link" href="{{ route('login') }}" style="color:white;">Login</a>
                             </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                                <a class="nav-link" href="{{ route('logout') }}"style="color:white;">Logout</a>
                             </li>
                         @endguest
                         
                         <!--Sample profile-->
                         @if(Auth::check())
                         <li class="nav-item">
-                                <a class="nav-link" href="{{route('profile.view')}}"> Profile </a>
+                                <a class="nav-link" href="{{route('profile.view')}}" style="color:white;"> Profile </a>
                         </li>
                         @endif
                     </ul>
