@@ -35,6 +35,9 @@ class User extends Authenticatable
         'handphone_number',
         'status',
         'gender',
+        'reason',
+        'remark',
+        'score',
         'type'
     ];
 
@@ -71,7 +74,7 @@ class User extends Authenticatable
     {
         return $this->type() === self::AGENT;
     }
-    
+
     public function isMember(): bool
     {
         return $this->type() === self::DEFAULT;

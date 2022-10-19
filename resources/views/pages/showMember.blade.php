@@ -10,7 +10,7 @@
     <div class="col-sm-1"></div>
     <div class="col-sm-6">
         <br><br>
-    <h3>Memberss Information</h3>
+    <h3>Members Information</h3>
         <table class="table table-bordered">
             <thread>
                 <tr>
