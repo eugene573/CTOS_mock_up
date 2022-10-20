@@ -53,9 +53,9 @@
                                   @endif -->
                     </div>
                     <div class="form-group">
-                        <label for="score" style="margin-bottom:5px;">Score:</label><br>
-                        <input type="number" id="score" class="form-control" name="score" placeholder="300-850" 
-                         value="300" min="300" max="850">
+                        <!-- <label for="score" style="margin-bottom:5px;">Score:</label><br> -->
+                        <input type="hidden" id="score" class="form-control" name="score" placeholder="300-850" 
+                         value="0" min="300" max="850">
                         
                     </div>
 

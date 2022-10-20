@@ -10,6 +10,11 @@
             <div class="column" style=" float: left; width: 20%;">
             <h5>Create Agent</h5>
             <form action="{{ route('register.post') }}" method="POST">
+            <?php
+                    //$rand=rand();
+                    //$_SESSION['rand']=$rand;
+                 ?>
+                 {{--<input type="hidden" value="<?php echo $rand; ?>" name="randcheck" />--}}
             {{ csrf_field() }}
             <input type="hidden" id="handphone_number" name="handphone_number" value="">
             <input type="hidden" id="status" name="status" value="">

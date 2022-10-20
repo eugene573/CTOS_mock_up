@@ -1,4 +1,3 @@
-
 @extends('layout')
 @include('sidenav')
 @section('content')
@@ -56,12 +55,18 @@
                         id="bank_company" name="bank_company" value="{{$user->bank_company}}"  required autofocus>
                     </div>
 
-                <!-- <div class="form-group">
-                        <label for="status">Status:</label>
-                        <input type="text" class="form-control" id="status" name="status" 
+                <div class="form-group">
+                        <!-- <label for="status">Status:</label> -->
+                        <input type="hidden" class="form-control" id="status" name="status" 
                         value="{{$user->status}}" required autofocus>
-                        <p style="margin:1px;font-size:9px;">*No Score, Poor, Low, Fair, Good, Very Good, &nbspExcellent</p>
-                    </div> -->
+                        <!-- <p style="margin:1px;font-size:9px;">*No Score, Poor, Low, Fair, Good, Very Good, &nbspExcellent</p> -->
+                    </div>
+                    <div class="form-group">
+                        <label for="score">Score:</label>
+                        <input type="number" class="form-control" id="score" name="score" 
+                        value="{{$user->score}}" required autofocus>
+                        <p style="margin:1px;font-size:9px;">*300-850</p>
+                    </div>
                     
                     <div class="form-group" style="margin-top:44px;">
                         <label for="contactNumber">Contact Number:</label>
