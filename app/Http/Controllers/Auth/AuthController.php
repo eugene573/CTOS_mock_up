@@ -58,12 +58,42 @@ class AuthController extends Controller
             'handphone_number' => 'nullable',
             'status' => 'nullable',
             'gender' => 'nullable',
+            'score'  => 'required'
         ]);
+
+        if($request['score'] >= 0 && $request['score'] <= 299)
+        {
+            $request['status'] = "No Score";
+        }
+        else if($request['score'] >= 300 && $request['score'] <= 528)
+        {
+            $request['status'] = "Poor";
+        }
+        else if($request['score'] >= 529 && $request['score'] <= 650)
+        {
+            $request['status'] = "Low";
+        }
+        else if($request['score'] >= 651 && $request['score'] <= 696)
+        {
+            $request['status'] = "Fair";
+        }
+        else if($request['score'] >= 697 && $request['score'] <= 717)
+        {
+            $request['status'] = "Good";
+        }
+        else if($request['score'] >= 718 && $request['score'] <= 743)
+        {
+            $request['status'] = "Very Good";
+        }
+        else if($request['score'] >= 744 && $request['score'] <= 850)
+        {
+            $request['status'] = "Excellent";
+        }
     
         $data = $request->all();
         $check = $this->create($data);
 
-        return redirect('dashboard')->withSuccess('You have successfully registered!');
+        return redirect('dashboard')->withSuccess('You have successfully logged in!');
     }
 
     public function dashboard(){
@@ -83,8 +113,9 @@ class AuthController extends Controller
             'email' => $data['email'],
             'handphone_number' => $data['handphone_number'],
             'gender' => $data['gender'],
-            'score' => $data['score'],
-            'type' => $data['type']
+            'status' => $data['status'],
+            'type' => $data['type'],
+            'score' => $data['score']
         ]);
     }
 
@@ -125,7 +156,8 @@ class AuthController extends Controller
 
         return view('pages.editAgent')->with(["users" => $users]);
     }
-
+    
+    //update this code plz, me
     public function update(Request $r)
     {
         $users = User::find($r->id);
@@ -138,8 +170,38 @@ class AuthController extends Controller
             'status' => 'nullable',
             'ic' => 'nullable',
             'bank_account_number' => 'nullable',
-            'bank_company' => 'nullable'
+            'bank_company' => 'nullable',
+            'score' => 'required',
         ]);
+
+        if($r['score'] >= 0 && $r['score'] <= 299)
+        {
+            $r['status'] = "No Score";
+        }
+        else if($r['score'] >= 300 && $r['score'] <= 528)
+        {
+            $r['status'] = "Poor";
+        }
+        else if($r['score'] >= 529 && $r['score'] <= 650)
+        {
+            $r['status'] = "Low";
+        }
+        else if($r['score'] >= 651 && $r['score'] <= 696)
+        {
+            $r['status'] = "Fair";
+        }
+        else if($r['score'] >= 697 && $r['score'] <= 717)
+        {
+            $r['status'] = "Good";
+        }
+        else if($r['score'] >= 718 && $r['score'] <= 743)
+        {
+            $r['status'] = "Very Good";
+        }
+        else if($r['score'] >= 744 && $r['score'] <= 850)
+        {
+            $r['status'] = "Excellent";
+        }
 
         $users->name = $r->name;
         $users->password = $r->password;
@@ -150,6 +212,7 @@ class AuthController extends Controller
         $users->ic = $r->ic;
         $users->bank_account_number = $r->bank_account_number;
         $users->bank_company = $r->bank_company;
+        $users->score = $r->score;
         $users->save();
 
         Session::flash('success',"User was updated successfully!");
@@ -162,7 +225,7 @@ class AuthController extends Controller
     }
 
     public function about(){
-        return view("pages.aboutus");
+        return view("pages.aboutUs");
     }
 
     public function logout()

@@ -29,12 +29,5 @@ class UserTableSeeder extends Seeder
             'score'     => "0",
             'type'      => User::AGENT,
         ]);
-        User::factory()->create([
-            'name'      => 'Lily',
-            'email'     => 'lily@example.com',
-            'password'  => bcrypt('password'),
-            'score'     => "0",
-            'type'      => User::DEFAULT,
-        ]);
     }
 }
