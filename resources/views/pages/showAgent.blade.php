@@ -1,14 +1,32 @@
 @extends('layout')
 @include('sidenav')
 @section('content')
+<style>
+    table {
+    font-size:14px;
+}
+    .trhead{
+        background-color: #37758f;
+        color:white;
+    }
+
+    tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+    .card{
+    width:fit-content;
+    padding:20px;  
+}
+    </style>
 <div class="row">
     <div class="col-sm-3"></div>
     <div class="col-sm-6">
-        <br><br>
+        <br>
+        <div class="card">
         <h3>Agents Information</h3>
         <table class="table table-bordered">
             <thread>
-                <tr>
+                <tr class="trhead">
                     <td>Name</td>
                     <td>Email</td>
                     <td>IC</td>
@@ -32,7 +50,8 @@
                 @endforeach
             </tbody>
         </table>
-        <br><br>
+        <br>
+        </div>
     </div>
 </div>
 @endsection

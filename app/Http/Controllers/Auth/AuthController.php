@@ -125,10 +125,10 @@ class AuthController extends Controller
         return view("pages.viewAgent")->with(["users" => $users]);
     }
 
-    public function viewMember()
+    public function viewCustomer()
     {
-        $users = User::all()->where('type','1');
-        return view("pages.viewMember")->with(["users" => $users]);
+        $users = DB::table('customer')::all();
+        return view("pages.viewCustomer")->with(["users" => $users]);
     }
 
     public function showAgent()
@@ -216,17 +216,17 @@ class AuthController extends Controller
         $users->save();
 
         Session::flash('success',"User was updated successfully!");
-        return redirect()->route('dashboard');
+        return redirect();
     }
 
-    public function profile(){
-        $users = User::all()->where('id','=',Auth::id());
-        return view('pages.profile')->with(["users" => $users]);
-    }
+    // public function profile(){
+    //     $users = User::all()->where('id','=',Auth::id());
+    //     return view('pages.profile')->with(["users" => $users]);
+    // }
 
-    public function about(){
-        return view("pages.aboutUs");
-    }
+    // public function about(){
+    //     return view("pages.aboutUs");
+    // }
 
     public function logout()
     {
