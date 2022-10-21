@@ -27,7 +27,7 @@
             @endif
         <table class="table table-bordered">
             <thread>
-                <tr>
+                <tr class="trhead">
                     <td>Member Name</td>
                     <td>Reason</td>
                     <td>Remark</td>

@@ -49,7 +49,7 @@ label{
                           </div>
   
                           <div class="col-md-6 offset-md-4">
-                              <button type="submit" class="btn btn-primary" style="float:right;width:70px;">
+                              <button type="submit" class="btn btn-primary" style="float:right;width:80px;">
                                   Update
                               </button>
                           </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>CTOS Mock-Up</title>
+        <title>CTOS</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
         <style type="text/css">
@@ -138,7 +138,7 @@
                         <!--Sample profile-->
                         <!-- @if(Auth::check())
                         <li class="nav-item">
-                                <a class="nav-link" href="{{route('profile.view')}}" style="color:white;"> Profile </a>
+                                <a class="nav-link" href="#" style="color:white;"> Profile </a>
                         </li>
                         @endif -->
                     </ul>
