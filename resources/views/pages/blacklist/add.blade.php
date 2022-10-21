@@ -9,6 +9,9 @@
 label{
     font-weight:bold;
 }
+.row{
+        margin-right:0 !important;
+    }
 </style>
 
 <main class="register-form">
