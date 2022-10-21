@@ -45,7 +45,8 @@
                     @if(auth()->user()->isAdmin() || auth()->user()->isAgent())
                     <td>
                         <a href="{{ route('edit.blacklist',['id'=>$viewBlacklist->id]) }}" class="btn btn-warning btn-xs">Edit</a>
-                        <a href="{{ route('blacklist.delete',['id'=>$viewBlacklist->id]) }}" class="btn btn-danger btn-xs">Delete</a>
+                        <a href="{{ route('blacklist.delete',['id'=>$viewBlacklist->id]) }}" class="btn btn-danger btn-xs"
+                        onClick="return confirm('Are you sure to delete?')">Delete</a>
                     </td>
                     @endif
                 </tr>
