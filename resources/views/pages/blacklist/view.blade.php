@@ -13,6 +13,9 @@
     tr:nth-child(even) {
   background-color: #f5f5f5;
 }
+    .row{
+        margin-right:0 !important;
+    }
 
     </style>
 <div class="row">

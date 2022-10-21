@@ -17,6 +17,9 @@
     width:fit-content;
     padding:20px;  
 }
+.row{
+    margin-right:0 !important;
+}
     </style>
 <div class="row">
     <div class="col-sm-3"></div>
@@ -34,6 +37,7 @@
                     <td>Gender</td>
                     <td>Type</td>
                     <td></td>
+                    <td></td>
                 </tr>
             </thread>
             <tbody>
@@ -46,6 +50,8 @@
                     <td>{{ $viewAgent->gender }}</td>
                     <td>{{ $viewAgent->type }}</td>
                     <td><a href="{{ route('agent.edit',['id'=>$viewAgent->id]) }}" class="btn btn-warning btn-xs">Edit</a> </td>
+                    <td><a href="#" class="btn btn-danger btn-xs"  
+                    onClick="return confirm('Are you sure to delete?')">Delete</a></td> 
                 </tr>
                 @endforeach
             </tbody>

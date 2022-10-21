@@ -17,6 +17,9 @@
     width:fit-content;
     padding:20px;  
 }
+    .row{
+        margin-right:0 !important;
+    }
     </style>
 <div class="row">
     <div class="col-sm-1"></div>
@@ -55,7 +58,7 @@
                     <td>{{ $viewMember->type }}</td>
                     <td><a href="{{ route('member.edit',['id'=>$viewMember->id]) }}" class="btn btn-warning btn-xs">Edit</a> </td>
                     <td><a href=" {{ route('add.to.blacklist',['id'=>$viewMember->id]) }}" class="btn btn-dark btn-xs">Add to Blacklist</a></td>
-                  <!--  <td><a href="#" class="btn btn-danger btn-xs">Delete</a></td> -->
+                   <td><a href="#" class="btn btn-danger btn-xs"  onClick="return confirm('Are you sure to delete?')">Delete</a></td> 
                 </tr>
                 @endforeach
             </tbody>
