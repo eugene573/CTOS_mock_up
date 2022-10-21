@@ -39,9 +39,19 @@ class AuthController extends Controller
         ]);
 
         $credentials = $request->only('password', 'email');
+        
 
         if(Auth::attempt($credentials)){
-            return redirect()->intended('dashboard')->withSuccess('You have successfully logged in!');
+            if(Auth::user()->isAdmin()){
+                return redirect()->route('agent.register')->withSuccess('You have successfully logged in!');
+            }
+            else if(Auth::user()->isAgent()){
+                return redirect()->route('user.register')->withSuccess('You have successfully logged in!');
+            }
+            else if(Auth::user()->isMember()){
+                return redirect()->route('blacklist.view')->withSuccess('You have successfully logged in!');
+            }
+            
         }
 
         return redirect('login')->with('error', 'Email or password is incorrect. Please try again.');;
@@ -125,10 +135,10 @@ class AuthController extends Controller
         return view("pages.viewAgent")->with(["users" => $users]);
     }
 
-    public function viewCustomer()
+    public function viewMember()
     {
-        $users = DB::table('customer')::all();
-        return view("pages.viewCustomer")->with(["users" => $users]);
+        $users = User::all()->where('type','1');
+        return view("pages.viewMember")->with(["users" => $users]);
     }
 
     public function showAgent()
@@ -216,17 +226,17 @@ class AuthController extends Controller
         $users->save();
 
         Session::flash('success',"User was updated successfully!");
-        return redirect();
+        return redirect()->route('dashboard');
     }
 
-    // public function profile(){
-    //     $users = User::all()->where('id','=',Auth::id());
-    //     return view('pages.profile')->with(["users" => $users]);
-    // }
+    public function profile(){
+        $users = User::all()->where('id','=',Auth::id());
+        return view('pages.profile')->with(["users" => $users]);
+    }
 
-    // public function about(){
-    //     return view("pages.aboutUs");
-    // }
+    public function about(){
+        return view("pages.aboutUs");
+    }
 
     public function logout()
     {
