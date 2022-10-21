@@ -36,17 +36,21 @@ Route::get('member-edit/{id}', [AuthController::class, 'editMember'])->name('mem
 Route::post('update' ,[AuthController::class,'update'])->name('user.update');
 Route::get('show-agent',[AuthController::class, 'showAgent'])->name('agent.show');
 Route::get('show-member',[AuthController::class, 'showMember'])->name('member.show');
-Route::get('view-agent',[AuthController::class, 'viewAgent'])->name('agent.view');
-Route::get('view-member',[AuthController::class, 'viewMember'])->name('member.view');
+Route::get('view-agent',[AuthController::class, 'showAgent'])->name('agent.view');
+Route::get('view-member',[AuthController::class, 'showMember'])->name('member.view');
 
 //Route for handling matter of blacklisting
-Route::get('add-to-blacklist/{id}',[BlacklistController::class, 'addToBlacklist'])->name('add.to.blacklist');
+Route::get('add-to-blacklist',[BlacklistController::class, 'addToBlacklist'])->name('add.to.blacklist');
 Route::post('post-blacklist',[BlacklistController::class, 'add'])->name('blacklist.post');
 Route::get('view-blacklist',[BlacklistController::class, 'viewBlacklist'])->name('blacklist.view');
+Route::get('edit-blacklisted-person/{id}',[BlacklistController::class, 'edit'])->name('edit.blacklist');
+Route::post('update-blacklist',[BlacklistController::class, 'update'])->name('blacklist.update');
+Route::get('delete-blacklisted-person/{id}',[BlacklistController::class, 'delete'])->name('blacklist.delete');
 
-Route::get('profile', [AuthController::class, 'profile'])->name('profile.view'); 
-Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard'); 
 
+// Route::get('profile', [AuthController::class, 'profile'])->name('profile.view'); 
+Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+// Route::get('about-ctos', [AuthController::class, 'about'])->name('about.us'); 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 //Route for providing support if user forget password
