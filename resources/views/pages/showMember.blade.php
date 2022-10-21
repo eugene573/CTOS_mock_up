@@ -41,7 +41,6 @@
                     <td>Type</td>
                     <td></td>
                     <td></td>
-                    <td></td>
                 </tr>
             </thread>
             <tbody>
@@ -57,7 +56,6 @@
                     <td>{{ $viewMember->gender }}</td>
                     <td>{{ $viewMember->type }}</td>
                     <td><a href="{{ route('member.edit',['id'=>$viewMember->id]) }}" class="btn btn-warning btn-xs">Edit</a> </td>
-                    <td><a href=" {{ route('add.to.blacklist',['id'=>$viewMember->id]) }}" class="btn btn-dark btn-xs">Add to Blacklist</a></td>
                    <td><a href="#" class="btn btn-danger btn-xs"  onClick="return confirm('Are you sure to delete?')">Delete</a></td> 
                 </tr>
                 @endforeach

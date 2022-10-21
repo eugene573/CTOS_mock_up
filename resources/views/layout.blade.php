@@ -92,6 +92,45 @@
                 text-decoration: none;
             }
 
+            .dropdown .dropbtn {
+            font-size: 16px;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 10px 14px;
+            background-color: inherit;
+            font-family: inherit; /* Important for vertical align on mobile phones */
+            margin: 0; /* Important for vertical align on mobile phones */
+            }
+
+
+            .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #266b89;
+            min-width: 160px;
+            border-radius:6px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            }
+
+            .dropdown-content a {
+            float: none;
+            color: white !important;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            }
+
+            .dropdown-content a:hover {
+            background-color: #4b8c99;
+            border-radius:6px;
+            }
+
+            .dropdown:hover .dropdown-content {
+            display: block;
+            }
         </style>
         <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">
     </head>
@@ -115,8 +154,17 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 @if(Auth::check())
-                <a class="topnav-link ml-3" href="{{ route('blacklist.view') }}"
-                 style="color: white;"> BlackLists </a>
+                <div class="dropdown">
+                <button class="dropbtn">Blacklists 
+                <i class="fa fa-caret-down"></i>
+                </button>
+               <div class="dropdown-content">
+               <a  href="{{ route('blacklist.view') }}"
+                 style="color: white;"> View BlackLists </a>
+                 <a  href="{{ route('add.to.blacklist') }}"
+                 style="color: white;"> Add to BlackLists </a>
+               </div>
+                    </div>       
             
                  @else
                  
