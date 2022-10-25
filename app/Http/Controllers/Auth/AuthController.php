@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Cookie;
 use DB;
 
 // here is the code for settling login,register,logout function
@@ -37,6 +38,11 @@ class AuthController extends Controller
             'password' => 'required',
             'email' => 'required',
         ]);
+
+        if($request->has('rememberme')){
+            Cookie::queue('email',$request->email,1440);
+            Cookie::queue('password',$request->password,1440);
+        }
 
         $credentials = $request->only('password', 'email');
         
