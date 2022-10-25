@@ -153,7 +153,20 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                @if (Auth::check() && Auth::user()->isAdmin())
+
+         @if (Auth::check() && Auth::user()->isAdmin())
+                <div class="dropdown">
+                <button class="dropbtn">Register 
+                <i class="fa fa-caret-down"></i>
+                </button>
+               <div class="dropdown-content">
+               <a  href="{{ route('agent.register') }}"
+                 style="color: white;"> Create Agents </a>
+                 <a  href="{{ route('user.register') }}"
+                 style="color: white;"> Create Members </a>
+               </div>
+                    </div>
+            <!-- second dropdown  -->
                 <div class="dropdown">
                 <button class="dropbtn">Blacklists 
                 <i class="fa fa-caret-down"></i>
@@ -165,16 +178,40 @@
                  style="color: white;"> Add to BlackLists </a>
                </div>
                     </div>
-                    @elseif  (Auth::check() && Auth::user()->isAgent())
-                    <div class="dropdown">
-                <button class="dropbtn">Blacklists 
+        <!-- third dropdown  -->
+            <div class="dropdown">
+                <button class="dropbtn">View Lists 
                 <i class="fa fa-caret-down"></i>
                 </button>
                <div class="dropdown-content">
-               <a  href="{{ route('blacklist.view') }}"
-                 style="color: white;"> View BlackLists </a>
-                 <a  href="{{ route('add.to.blacklist') }}"
-                 style="color: white;"> Add to BlackLists </a>
+               <a  href="{{ route('agent.view') }}"
+                 style="color: white;">Agents Information </a>
+                 <a  href="{{ route('member.view') }}"
+                 style="color: white;">Members Information </a>
+               </div>
+                    </div>
+           @elseif  (Auth::check() && Auth::user()->isAgent())
+                <div class="dropdown">
+                    <button class="dropbtn">Blacklists 
+                    <i class="fa fa-caret-down"></i>
+                    </button>
+                <div class="dropdown-content">
+                <a  href="{{ route('blacklist.view') }}"
+                    style="color: white;"> View BlackLists </a>
+                    <a  href="{{ route('add.to.blacklist') }}"
+                    style="color: white;"> Add to BlackLists </a>
+                </div>
+                        </div>
+      <!-- second dropdown  -->
+            <div class="dropdown">
+                <button class="dropbtn">View Lists 
+                <i class="fa fa-caret-down"></i>
+                </button>
+               <div class="dropdown-content">
+               <a  href="{{ route('agent.view') }}"
+                 style="color: white;">Agents Information </a>
+                 <a  href="{{ route('member.view') }}"
+                 style="color: white;">Members Information </a>
                </div>
                     </div>
                     @else
