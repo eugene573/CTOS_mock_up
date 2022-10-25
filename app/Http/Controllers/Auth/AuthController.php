@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
+use DB;
 use Session;
+use Cookie;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Cookie;
-use DB;
+use Symfony\Component\Console\Input\Input;
 
 // here is the code for settling login,register,logout function
 class AuthController extends Controller
@@ -40,7 +41,7 @@ class AuthController extends Controller
         ]);
 
         if($request->has('rememberme')){
-            Cookie::queue('email',$request->email,1440);
+            Cookie::queue('email',$request->email,1440); //1440 means it stays for 24 hours
             Cookie::queue('password',$request->password,1440);
         }
 
@@ -48,6 +49,11 @@ class AuthController extends Controller
         
 
         if(Auth::attempt($credentials)){
+            // set remember me token when user check the box
+            //$remember = Input::get('remember');
+            /*if(!empty($remember)){
+                Auth::login(Auth::user()->id, true);
+            }*/
             if(Auth::user()->isAdmin()){
                 return redirect()->route('agent.register')->withSuccess('You have successfully logged in!');
             }
@@ -72,12 +78,10 @@ class AuthController extends Controller
             'email' => 'required',
             'type' => 'required',
             'handphone_number' => 'nullable',
-            'status' => 'nullable',
             'gender' => 'nullable',
-            'score'  => 'required'
         ]);
 
-        if($request['score'] >= 0 && $request['score'] <= 299)
+        /*if($request['score'] >= 0 && $request['score'] <= 299)
         {
             $request['status'] = "No Score";
         }
@@ -104,7 +108,7 @@ class AuthController extends Controller
         else if($request['score'] >= 744 && $request['score'] <= 850)
         {
             $request['status'] = "Excellent";
-        }
+        }*/
     
         $data = $request->all();
         $check = $this->create($data);
@@ -129,9 +133,7 @@ class AuthController extends Controller
             'email' => $data['email'],
             'handphone_number' => $data['handphone_number'],
             'gender' => $data['gender'],
-            'status' => $data['status'],
             'type' => $data['type'],
-            'score' => $data['score']
         ]);
     }
 
@@ -200,14 +202,13 @@ class AuthController extends Controller
             'email' => 'required',
             'handphone_number' => 'nullable',
             'gender' => 'nullable',
-            'status' => 'nullable',
             'ic' => 'nullable',
-            'bank_account_number' => 'nullable',
-            'bank_company' => 'nullable',
-            'score' => 'required',
+            'bank_account_number1' => 'nullable',
+            'bank_account_number2' => 'nullable',
+            'bank_account_number3' => 'nullable',
         ]);
 
-        if($r['score'] >= 0 && $r['score'] <= 299)
+        /*if($r['score'] >= 0 && $r['score'] <= 299)
         {
             $r['status'] = "No Score";
         }
@@ -234,32 +235,31 @@ class AuthController extends Controller
         else if($r['score'] >= 744 && $r['score'] <= 850)
         {
             $r['status'] = "Excellent";
-        }
+        }*/
 
         $users->name = $r->name;
         $users->password = $r->password;
         $users->email = $r->email;
         $users->handphone_number = $r->handphone_number;
         $users->gender = $r->gender;
-        $users->status = $r->status;
         $users->ic = $r->ic;
-        $users->bank_account_number = $r->bank_account_number;
-        $users->bank_company = $r->bank_company;
-        $users->score = $r->score;
+        $users->bank_account_number1 = $r->bank_account_number1;
+        $users->bank_account_number2 = $r->bank_account_number2;
+        $users->bank_account_number3 = $r->bank_account_number3;
         $users->save();
 
         Session::flash('success',"User was updated successfully!");
         return redirect()->route('dashboard');
     }
 
-    public function profile(){
+    /*public function profile(){
         $users = User::all()->where('id','=',Auth::id());
         return view('pages.profile')->with(["users" => $users]);
     }
 
     public function about(){
         return view("pages.aboutUs");
-    }
+    }*/
 
     public function logout()
     {
