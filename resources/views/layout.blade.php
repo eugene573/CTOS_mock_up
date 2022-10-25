@@ -153,7 +153,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                @if(Auth::check())
+                @if (Auth::check() && Auth::user()->isAdmin())
                 <div class="dropdown">
                 <button class="dropbtn">Blacklists 
                 <i class="fa fa-caret-down"></i>
@@ -164,10 +164,23 @@
                  <a  href="{{ route('add.to.blacklist') }}"
                  style="color: white;"> Add to BlackLists </a>
                </div>
-                    </div>       
-            
-                 @else
-                 
+                    </div>
+                    @elseif  (Auth::check() && Auth::user()->isAgent())
+                    <div class="dropdown">
+                <button class="dropbtn">Blacklists 
+                <i class="fa fa-caret-down"></i>
+                </button>
+               <div class="dropdown-content">
+               <a  href="{{ route('blacklist.view') }}"
+                 style="color: white;"> View BlackLists </a>
+                 <a  href="{{ route('add.to.blacklist') }}"
+                 style="color: white;"> Add to BlackLists </a>
+               </div>
+                    </div>
+                    @else
+                    <div>
+                       
+                    </div>             
                  @endif 
         <!--Login & Logout-->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
