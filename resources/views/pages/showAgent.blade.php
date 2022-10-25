@@ -26,7 +26,9 @@
     <div class="col-sm-6">
         <br>
         <div class="card">
-        <h3>Agents Information</h3>
+        <h3>Agents Information</h3><br>
+        <button style="width:70px;" class="btn btn-primary"
+         onclick= "window.location.href = '/agent-registration';">Create</button><br>
         <table class="table table-bordered">
             <thread>
                 <tr class="trhead">
@@ -36,8 +38,8 @@
                     <td>Handphone Number</td>
                     <td>Gender</td>
                     <td>Type</td>
-                    <td></td>
-                    <td></td>
+                    <td>Action</td>
+                    
                 </tr>
             </thread>
             <tbody>
@@ -49,9 +51,11 @@
                     <td>{{ $viewAgent->handphone_number }}</td>
                     <td>{{ $viewAgent->gender }}</td>
                     <td>{{ $viewAgent->type }}</td>
-                    <td><a href="{{ route('agent.edit',['id'=>$viewAgent->id]) }}" class="btn btn-warning btn-xs">Edit</a> </td>
-                    <td><a href="{{ route('agent.delete',['id'=>$viewAgent->id]) }}" class="btn btn-danger btn-xs"  
-                    onClick="return confirm('Are you sure to delete?')">Delete</a></td> 
+                    <td style='white-space: nowrap'>
+                    <a href="{{ route('agent.edit',['id'=>$viewAgent->id]) }}" class="btn btn-warning btn-xs">Edit</a>
+                    <a href="{{ route('agent.delete',['id'=>$viewAgent->id]) }}" class="btn btn-danger btn-xs"  
+                    onClick="return confirm('Are you sure to delete?')">Delete</a>
+                </td> 
                 </tr>
                 @endforeach
             </tbody>

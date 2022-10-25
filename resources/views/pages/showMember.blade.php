@@ -26,7 +26,8 @@
     <div class="col-sm-6">
         <br>
     <div class="card">
-    <h3>Members Information</h3>
+    <h3>Members Information</h3><br>
+   <button style="width:70px;" class="btn btn-primary" onclick= "window.location.href = '/user-registration';">Create</button><br>
         <table class="table table-bordered">
             <thread>
                 <tr class="trhead">
@@ -39,8 +40,8 @@
                     <td>Status</td>
                     <td>Gender</td>
                     <td>Type</td>
-                    <td></td>
-                    <td></td>
+                    <td>Action</td>
+                    
                 </tr>
             </thread>
             <tbody>
@@ -55,8 +56,8 @@
                     <td>{{ $viewMember->status}}</td>
                     <td>{{ $viewMember->gender }}</td>
                     <td>{{ $viewMember->type }}</td>
-                    <td><a href="{{ route('member.edit',['id'=>$viewMember->id]) }}" class="btn btn-warning btn-xs">Edit</a> </td>
-                   <td><a href="{{ route('member.delete',['id'=>$viewMember->id]) }}" class="btn btn-danger btn-xs"  onClick="return confirm('Are you sure to delete?')">Delete</a></td> 
+                    <td  style='white-space: nowrap'><a href="{{ route('member.edit',['id'=>$viewMember->id]) }}" class="btn btn-warning btn-xs">Edit</a>
+                   <a href="{{ route('member.delete',['id'=>$viewMember->id]) }}" class="btn btn-danger btn-xs"  onClick="return confirm('Are you sure to delete?')">Delete</a></td> 
                 </tr>
                 @endforeach
             </tbody>
