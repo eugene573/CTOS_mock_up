@@ -58,7 +58,7 @@
                         <label for="Male" style="font-size:14px;">Male</label>&nbsp
                         <input type="radio" id="gender" name="gender"name="gender" value="Female"
                         style="vertical-align: middle;margin-bottom:2px;margin-left:5px;">
-                        <label for="femela" style="font-size:14px;">Female</label>
+                        <label for="female" style="font-size:14px;">Female</label>
                     </div>
 
             <div>
