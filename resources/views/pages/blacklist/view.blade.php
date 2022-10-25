@@ -45,7 +45,7 @@
                 </tr>
             </thread>
             <tbody>
-                @foreach($uName as $viewBlacklist)
+                @foreach($blacklists as $viewBlacklist)
                 <tr>
                     <td>{{ $viewBlacklist->name }}</td>
                     <td>{{ $viewBlacklist->reason }}</td>

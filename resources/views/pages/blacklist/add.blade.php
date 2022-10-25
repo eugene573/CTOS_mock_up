@@ -68,14 +68,14 @@ label{
                         <label for="bank_account_number2" class="col-md-4 col-form-label text-md-left" style="margin-right: -35px !important;">Bank Account Number 2</label>
                         <div class="col-md-7">
                         <input type="text" class="form-control" id="bank_account_number2" name="bank_account_number2"
-                        style="margin-top:10px;" required autofocus>
+                        style="margin-top:10px;"  >
                 </div>
                     </div> 
                     <div class="form-group row" >
                         <label for="bank_account_number3" class="col-md-4 col-form-label text-md-left" style="margin-right: -35px !important;">Bank Account Number 3</label>
                         <div class="col-md-7">
                         <input type="text" class="form-control" id="bank_account_number3" name="bank_account_number3"
-                        style="margin-top:10px;" required autofocus>
+                        style="margin-top:10px;"  >
                 </div>
                     </div> 
 </div>
@@ -111,9 +111,23 @@ label{
                           </div>
 
                           <div class="form-group row">
+                              <label for="social_media_account" class="col-md-4 col-form-label text-md-left" style="margin-right: -35px !important;">Social Media Account</label>
+                              <div class="col-md-7">
+                                  <textarea type="text" id="social_media_account" class="form-control" name="social_media_account"></textarea >
+                              </div>
+                          </div>
+
+                          <div class="form-group row">
                               <!-- <label for="created_by" class="col-md-4 col-form-label text-md-left" style="margin-right: -35px !important;">Created_by</label> -->
                               <div class="col-md-7">
-                                  <input type="hidden" id="created_by" class="form-control" name="created_by">
+                                  <input type="hidden" id="created_by" class="form-control" name="created_by" value="{{Auth::user()->id}}">
+                              </div>
+                          </div>
+
+                          <div class="form-group row">
+                              <!-- <label for="deleted_by" class="col-md-4 col-form-label text-md-left" style="margin-right: -35px !important;">Created_by</label> -->
+                              <div class="col-md-7">
+                                  <input type="hidden" id="deleted_by" class="form-control" name="deleted_by" value="1">
                               </div>
                           </div>
   
