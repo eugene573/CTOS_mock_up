@@ -48,7 +48,7 @@
         <table class="table table-bordered" style="margin-top:10px;">
             <thread>
                 <tr class="trhead">
-                    <td>Member Name</td>
+                    <td>Name</td>
                     <td>Email</td>
                     <td>Contact Number</td>
                     <td>IC Number</td>
