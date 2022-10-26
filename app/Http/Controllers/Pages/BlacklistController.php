@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsAgent;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class BlacklistController extends Controller
 {
@@ -38,7 +39,7 @@ class BlacklistController extends Controller
         $data = $request->all();
         $check = $this->create($data);
 
-        return redirect('blacklist.view')->withSuccess('You have added a person to blacklist.');
+        return redirect('dashboard')->withSuccess('You have added a person to blacklist.');
     }
 
     public function create(array $data)
@@ -62,7 +63,7 @@ class BlacklistController extends Controller
     public function viewBlacklist()
     {
         $blacklists = DB::table('blacklists')->leftJoin('users','blacklists.created_by','=','users.id')
-        ->select('blacklists.*','users.name as uName')->paginate(5);;
+        ->select('blacklists.*','users.name as uName')->paginate(5);
         return view('pages.blacklist.view')->with('blacklists',$blacklists);
         
     }
@@ -71,6 +72,14 @@ class BlacklistController extends Controller
     {
         $blacklists = Blacklist::all()->where('id',$id);
         return view('pages.blacklist.edit')->with(["blacklists" => $blacklists]);
+    }
+
+    public function searchBlacklist(Request $r)
+    {
+        $keyword = $r->keyword;
+        $blacklists=DB::table('blacklists')->leftJoin('users','blacklists.created_by','=','users.id')
+        ->select('blacklists.*','users.name as uName')->where('blacklists.name','like','%'.$keyword.'%')->get();
+        return view('pages.blacklist.view')->with('blacklists',$blacklists);
     }
 
     public function update(Request $r)
@@ -104,15 +113,16 @@ class BlacklistController extends Controller
         $blacklists->save();
 
         Session::flash('success',"Blacklisted person was updated successfully!");
-        return redirect()->route('blacklist.view');
+        return redirect()->route('dashboard');
     }
 
-    /*public function delete($id)
+    public function delete($id)
     {
         $blacklists = Blacklist::find($id);
-        $blacklists->delete();
+        $blacklists->deleted_by = Auth::id();
+        $blacklists->save();
 
         Session::flash('success',"Blacklisted person was deleted from record successfully!");
         return redirect()->back();
-    }*/
+    }
 }
