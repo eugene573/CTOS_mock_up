@@ -68,8 +68,11 @@
                    <a href="{{ route('member.delete',['id'=>$viewMember->id]) }}" class="btn btn-danger btn-xs"  onClick="return confirm('Are you sure to delete?')">Delete</a></td> 
                 </tr>
                 @endforeach
-            </tbody>
+            </tbody> 
         </table>
+        <div >
+        {{ $users -> links("pagination::bootstrap-4")}}
+    </div>
         <br>
         </div>
     </div>
