@@ -37,7 +37,6 @@
                     <td>IC</td>
                     <td>Handphone Number</td>
                     <td>Gender</td>
-                    <td>Type</td>
                     <td>Action</td>
                     
                 </tr>
@@ -50,7 +49,6 @@
                     <td>{{ $viewAgent->ic }}</td>
                     <td>{{ $viewAgent->handphone_number }}</td>
                     <td>{{ $viewAgent->gender }}</td>
-                    <td>{{ $viewAgent->type }}</td>
                     <td style='white-space: nowrap'>
                     <a href="{{ route('agent.edit',['id'=>$viewAgent->id]) }}" class="btn btn-warning btn-xs">Edit</a>
                     <a href="{{ route('agent.delete',['id'=>$viewAgent->id]) }}" class="btn btn-danger btn-xs"  
