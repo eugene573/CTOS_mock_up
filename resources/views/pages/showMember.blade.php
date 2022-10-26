@@ -21,14 +21,25 @@
         margin-right:0 !important;
     }
     </style>
+<link rel="stylesheet" type="text/css" href="{{ url('css/search.css') }}">
 <div class="row">
     <div class="col-sm-1"></div>
     <div class="col-sm-6">
         <br>
     <div class="card">
     <h3>Members Information</h3><br>
-   <button style="width:70px;" class="btn btn-primary" onclick= "window.location.href = '/user-registration';">Create</button><br>
-        <table class="table table-bordered">
+    <form action="{{route('member.search')}}" method="POST">
+    @csrf
+   <div class="search">
+                <div class="input">
+                <button style="width:70px;" class="btn btn-primary" onclick= "window.location.href = '/user-registration';">Create</button>
+                   <button type="submit"><i class="fa fa-search"></i></button> 
+                   <input name="keyword" type="search" placeholder="Search" >
+                    
+                </div>
+        </div>
+</form>
+   <table class="table table-bordered">
             <thread>
                 <tr class="trhead">
                     <td>Name</td>
