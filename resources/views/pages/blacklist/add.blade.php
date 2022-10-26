@@ -19,7 +19,7 @@ label{
       <div class="row justify-content-left ml-5">
           <div class="col-md-6" >
               <div class="card" style="height:550px;width:850px;">
-                  <div class="card-header">Add Member to Blacklist</div>
+                  <div class="card-header">Add Customer to Blacklist</div>
                   <div class="card-body">
 
                   <form action="{{ route('blacklist.post') }}" method="POST">
