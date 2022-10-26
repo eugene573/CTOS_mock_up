@@ -78,6 +78,10 @@ return [
                 'log',
             ],
         ],
+        'from' => [
+            'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+            'name' => env('MAIL_FROM_NAME', 'ctos'),
+        ],
     ],
 
     /*
@@ -92,8 +96,8 @@ return [
     */
 
     'from' => [
-        'address' => 'YOUR_EMAIL', 
-        'name' => 'YOUR_APP_NAME'
+        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+        'name' => env('MAIL_FROM_NAME', 'ctos'),
     ],
        
     
