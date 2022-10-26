@@ -9,6 +9,9 @@
 label{
     font-weight:bold;
 }
+.row{
+        margin-right:0 !important;
+    }
 </style>
 
 <main class="register-form">
@@ -41,14 +44,15 @@ label{
                           <div class="form-group row">
                               <label for="email" class="col-md-4 col-form-label text-md-left" style="margin-right: -30px !important;">Email</label>
                               <div class="col-md-7">
-                                  <input type="text" id="email" class="form-control" name="email">
+                                  <input type="text" id="email" class="form-control" name="email" value="{{$blacklist->email}}">
                               </div>
                           </div> 
 
                           <div class="form-group row">
                               <label for="handphone_number" class="col-md-4 col-form-label text-md-left" style="margin-right: -30px !important;">Contact Number</label>
                               <div class="col-md-7">
-                                  <input type="text" id="handphone_number" class="form-control" name="handphone_number"  pattern="[0-9]{3}-[0-9]{7}|[0-9]{3}-[0-9]{8}">
+                                  <input type="text" id="handphone_number" class="form-control" name="handphone_number" 
+                                   pattern="[0-9]{3}-[0-9]{7}|[0-9]{3}-[0-9]{8}" value="{{$blacklist->handphone_number}}">
                               </div>
                           </div> 
 
@@ -56,7 +60,7 @@ label{
                         <label for="ic" class="col-md-4 col-form-label text-md-left" style="margin-right: -30px !important;">IC Number</label>
                         <div class="col-md-7">
                         <input type="text" class="form-control" placeholder="eg. 991114-07-7777" id="ic" name="ic"
-                        pattern="[0-9]{6}-[0-9]{2}-[0-9]{4}" required autofocus>
+                        pattern="[0-9]{6}-[0-9]{2}-[0-9]{4}" value="{{$blacklist->ic}}" required autofocus>
                 </div>
                     </div> 
 
@@ -64,21 +68,21 @@ label{
                         <label for="bank_account_number1" class="col-md-4 col-form-label text-md-left" style="margin-right: -30px !important;">Bank Account Number 1</label>
                         <div class="col-md-7">
                         <input type="text" class="form-control" id="bank_account_number1" name="bank_account_number1"
-                        style="margin-top:10px;" required autofocus>
+                        style="margin-top:10px;" value="{{$blacklist->bank_account_number1}}" required autofocus>
                 </div>
                     </div> 
                     <div class="form-group row" >
                         <label for="bank_account_number2" class="col-md-4 col-form-label text-md-left" style="margin-right: -30px !important;">Bank Account Number 2</label>
                         <div class="col-md-7">
                         <input type="text" class="form-control" id="bank_account_number2" name="bank_account_number2"
-                        style="margin-top:10px;"  >
+                        style="margin-top:10px;" value="{{$blacklist->bank_account_number2}}"   >
                 </div>
                     </div> 
                     <div class="form-group row" >
                         <label for="bank_account_number3" class="col-md-4 col-form-label text-md-left" style="margin-right: -30px !important;">Bank Account Number 3</label>
                         <div class="col-md-7">
                         <input type="text" class="form-control" id="bank_account_number3" name="bank_account_number3"
-                        style="margin-top:10px;"  >
+                        style="margin-top:10px;" value="{{$blacklist->bank_account_number3}}"  >
                 </div>
 </div>
 </div>
