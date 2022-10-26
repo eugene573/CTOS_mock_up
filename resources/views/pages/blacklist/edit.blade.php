@@ -15,6 +15,13 @@ label{
   <div class="cotainer"><br>
       <div class="row justify-content-left ml-5">
           <div class="col-md-6" >
+          @if(Session::has('error'))
+            <center><div class="alert" style="background-color:#F83030;">
+                <span class="check"><i class="material-icons" style="font-size:20px;color:white;">error</i></span>
+                <span class="msg"  style="color:white;">{{Session::get('error')}}</span>
+                <span class="crose" data-dismiss="alert">&times;</span>
+            </div></center>
+        @endif
               <div class="card" style="height:550px;width:850px;">
                   <div class="card-header">Edit Blacklisted Person</div>
                   <div class="card-body">
@@ -115,11 +122,6 @@ label{
 </div>
                       </form>
                       @endforeach
-
-                      <div class="error-messeges" style="background-color:red;color:white;margin-top:15px;
-                        font-size:14px;padding-left:5px;padding-right:5px; width:max-content;margin-top:50px;">
-                      {!! session()->get('error') !!}
-                      </div>
                   </div>
               </div>
           </div>

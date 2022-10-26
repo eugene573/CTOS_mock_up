@@ -23,7 +23,7 @@
     <div class="col-sm-1"></div>
     <div class="col-sm-6">
         <br><br>
-        <div class="card-body">
+        <div class="card-body" style="padding:0 !important;">
             @if (session('success'))
                 <div class="alert alert-success" role="alert">
                     {{ session('success') }}  
@@ -90,6 +90,9 @@
                 @endforeach
             </tbody>
         </table>
+        <div >
+        {{ $blacklists -> links("pagination::bootstrap-4")}}
+    </div>
         <br><br>
     </div>
 </div>
