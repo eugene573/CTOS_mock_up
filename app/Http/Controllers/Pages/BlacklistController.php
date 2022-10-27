@@ -63,7 +63,7 @@ class BlacklistController extends Controller
     public function viewBlacklist()
     {
         $blacklists = DB::table('blacklists')->leftJoin('users','blacklists.created_by','=','users.id')
-        ->select('blacklists.*','users.name as uName')->paginate(5);
+        ->select('blacklists.*','users.name as uName')->get();
         return view('pages.blacklist.view')->with('blacklists',$blacklists);
         
     }
@@ -119,7 +119,7 @@ class BlacklistController extends Controller
     public function delete($id)
     {
         $blacklists = Blacklist::find($id);
-        $blacklists->deleted_by = Auth::id();
+        $blacklists->deleted_by = Auth::user()->name;
         $blacklists->save();
 
         Session::flash('success',"Blacklisted person was deleted from record successfully!");

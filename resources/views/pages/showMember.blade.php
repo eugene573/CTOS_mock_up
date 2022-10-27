@@ -28,11 +28,12 @@
         <br>
     <div class="card">
     <h3>Members Information</h3><br>
+    <button style="width:70px;" class="btn btn-primary" onclick= "window.location.href = '/user-registration';">Create</button>
     <form action="{{route('member.search')}}" method="POST">
     @csrf
    <div class="search">
                 <div class="input">
-                <button style="width:70px;" class="btn btn-primary" onclick= "window.location.href = '/user-registration';">Create</button>
+           
                    <button type="submit"><i class="fa fa-search"></i></button> 
                    <input name="keyword" type="search" placeholder="Search" >
                     
@@ -70,9 +71,8 @@
                 @endforeach
             </tbody> 
         </table>
-        <div >
-        {{ $users -> links("pagination::bootstrap-4")}}
-    </div>
+        <div>
+        {{ $users -> links("pagination::bootstrap-4")}}</div>
         <br>
         </div>
     </div>
