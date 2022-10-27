@@ -162,13 +162,13 @@ class AuthController extends Controller
 
     public function showAgent()
     {
-        $users = DB::table('users')->select('users.*')->where('type','2')->paginate(5);;
+        $users = DB::table('users')->select('users.*')->where('type','2')->paginate(5);
         return view("pages.showAgent")->with(["users" => $users]);
     }
 
     public function showMember()
     {
-        $users = DB::table('users')->select('users.*')->where('type','1')->paginate(5);;
+        $users = DB::table('users')->select('users.*')->where('type','1')->paginate(5);
         return view("pages.showMember")->with(["users" => $users]);
     }
 
