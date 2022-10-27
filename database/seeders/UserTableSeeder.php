@@ -16,17 +16,20 @@ class UserTableSeeder extends Seeder
     {
         User::factory()->create([
             'name'      => 'Admin',
+            'username'  => 'admin',
             'email'     => 'admin@example.com',
             'password'  => bcrypt('password'),
-            'score'     => "0",
             'type'      => User::ADMIN,
         ]);
 
         User::factory()->create([
             'name'      => 'John Doe',
+            'username'  => 'johndoe',
             'email'     => 'john@example.com',
             'password'  => bcrypt('password'),
-            'score'     => "0",
+            'ic'        => '001023-01-2347',
+            'handphone_number' => '011-12340912',
+            'gender'    => 'Male',
             'type'      => User::AGENT,
         ]);
     }

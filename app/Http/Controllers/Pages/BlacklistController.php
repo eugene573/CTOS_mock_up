@@ -63,7 +63,7 @@ class BlacklistController extends Controller
     public function viewBlacklist()
     {
         $blacklists = DB::table('blacklists')->leftJoin('users','blacklists.created_by','=','users.id')
-        ->select('blacklists.*','users.name as uName')->get();
+        ->select('blacklists.*','users.name as uName')->paginate(5);
         return view('pages.blacklist.view')->with('blacklists',$blacklists);
         
     }

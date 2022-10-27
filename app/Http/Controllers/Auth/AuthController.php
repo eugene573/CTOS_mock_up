@@ -74,6 +74,7 @@ class AuthController extends Controller
         
         $request->validate([
             'name' => 'required',
+            'username' => 'required',
             'password' => 'required',
             'email' => 'required',
             'type' => 'required',
@@ -113,15 +114,16 @@ class AuthController extends Controller
         $data = $request->all();
         $check = $this->create($data);
 
-        if($request->type == 1){
-            return redirect()->route('member.show')->withSuccess('You have successfully created a new member!');
-        }
-        elseif($request->type == 2){
-            return redirect()->route('agent.show')->withSuccess('You have successfully created a new agent!');
-        }
-        else{
-            return redirect()->route('member.show')->withSuccess('You have successfully created a new member!');
-        }
+       
+    if($request->type == 1){
+        return redirect()->route('member.show')->withSuccess('You have successfully created a new member!');
+    }
+    elseif($request->type == 2){
+        return redirect()->route('agent.show')->withSuccess('You have successfully created a new agent!');
+    }
+    else{
+        return redirect()->route('member.show')->withSuccess('You have successfully created a new member!');
+    }
     }
 
     public function dashboard(){
@@ -137,6 +139,7 @@ class AuthController extends Controller
         
         return User::create([
             'name' => $data['name'],
+            'username' => $data['username'],
             'password' => Hash::make($data['password']),
             'email' => $data['email'],
             'handphone_number' => $data['handphone_number'],
@@ -145,27 +148,27 @@ class AuthController extends Controller
         ]);
     }
 
-    // public function viewAgent()
-    // {
-    //     $users = DB::table('users')->select('users.*')->where('type','2')->get();
-    //     return view("pages.viewAgent")->with(["users" => $users]);
-    // }
+    public function viewAgent()
+    {
+        $users = DB::table('users')->select('users.*')->where('type','2')->get();
+        return view("pages.viewAgent")->with(["users" => $users]);
+    }
 
-    // public function viewMember()
-    // {
-    //     $users = User::all()->where('type','1');
-    //     return view("pages.viewMember")->with(["users" => $users]);
-    // }
+    public function viewMember()
+    {
+        $users = User::all()->where('type','1');
+        return view("pages.viewMember")->with(["users" => $users]);
+    }
 
     public function showAgent()
     {
-        $users = DB::table('users')->select('users.*')->where('type','2')->paginate(5);
+        $users = DB::table('users')->select('users.*')->where('type','2')->get();
         return view("pages.showAgent")->with(["users" => $users]);
     }
 
     public function showMember()
     {
-        $users = DB::table('users')->select('users.*')->where('type','1')->paginate(5);
+        $users = User::all()->where('type','1');
         return view("pages.showMember")->with(["users" => $users]);
     }
 
@@ -206,6 +209,7 @@ class AuthController extends Controller
         $users = User::find($r->id);
         $r->validate([
             'name' => 'required',
+            'username' => 'required',
             'password' => 'required',
             'email' => 'required',
             'handphone_number' => 'nullable',
@@ -246,6 +250,7 @@ class AuthController extends Controller
         }*/
 
         $users->name = $r->name;
+        $users->username = $r->username;
         $users->password = $r->password;
         $users->email = $r->email;
         $users->handphone_number = $r->handphone_number;
