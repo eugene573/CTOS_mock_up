@@ -79,7 +79,7 @@ class BlacklistController extends Controller
     {
         $keyword = $r->keyword;
         $blacklists=DB::table('blacklists')->leftJoin('users','blacklists.created_by','=','users.id')
-        ->select('blacklists.*','users.name as uName')->where('blacklists.name','like','%'.$keyword.'%')->get();
+        ->select('blacklists.*','users.name as uName')->where('blacklists.name','like','%'.$keyword.'%')->paginate(5);
         return view('pages.blacklist.view')->with('blacklists',$blacklists);
     }
 
@@ -114,7 +114,7 @@ class BlacklistController extends Controller
         $blacklists->save();
 
         Session::flash('success',"Blacklisted person was updated successfully!");
-        return redirect()->route('dashboard');
+        return redirect()->route('blacklist.view');
     }
 
     public function delete($id)
