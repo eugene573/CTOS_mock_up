@@ -39,7 +39,7 @@ class BlacklistController extends Controller
         $data = $request->all();
         $check = $this->create($data);
 
-        return redirect()->route('blacklist.view')->withSuccess('You have added a person to blacklist.');
+        return redirect('dashboard')->withSuccess('You have added a person to blacklist.');
     }
 
     public function create(array $data)
@@ -60,6 +60,7 @@ class BlacklistController extends Controller
         ]);
     }
     
+    //ordered by oldest record first
     public function viewBlacklist()
     {
         $blacklists = DB::table('blacklists')->leftJoin('users','blacklists.created_by','=','users.id')
@@ -113,7 +114,7 @@ class BlacklistController extends Controller
         $blacklists->save();
 
         Session::flash('success',"Blacklisted person was updated successfully!");
-        return redirect()->route('pages.blacklist.view');
+        return redirect()->route('dashboard');
     }
 
     public function delete($id)
@@ -124,5 +125,24 @@ class BlacklistController extends Controller
 
         Session::flash('success',"Blacklisted person was deleted from record successfully!");
         return redirect()->back();
+    }
+
+    public function displayNewerFirst()
+    {
+        $blacklists = DB::table('blacklists')->leftJoin('users','blacklists.created_by','=','users.id')
+        ->select('blacklists.*','users.name as uName')->orderBy('id','desc')->paginate(5);
+        return view('pages.blacklist.view')->with('blacklists',$blacklists);
+    }
+
+    //display name that start with A first
+    public function displayAlphabeticallyAsc()
+    {
+
+    }
+
+    //display name that start with Z(if any) first
+    public function displayAlphabeticallyDesc()
+    {
+
     }
 }
