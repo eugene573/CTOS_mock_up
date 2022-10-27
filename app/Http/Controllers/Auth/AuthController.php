@@ -113,7 +113,15 @@ class AuthController extends Controller
         $data = $request->all();
         $check = $this->create($data);
 
-        return redirect('dashboard')->withSuccess('You have successfully logged in!');
+        if($request->type == 1){
+            return redirect()->route('member.show')->withSuccess('You have successfully created a new member!');
+        }
+        elseif($request->type == 2){
+            return redirect()->route('agent.show')->withSuccess('You have successfully created a new agent!');
+        }
+        else{
+            return redirect()->route('member.show')->withSuccess('You have successfully created a new member!');
+        }
     }
 
     public function dashboard(){
