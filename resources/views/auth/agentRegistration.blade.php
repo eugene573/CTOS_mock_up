@@ -10,22 +10,22 @@
             <div class="column" style=" float: left; width: 20%;">
             <h5>Create Agent</h5>
             <form action="{{ route('register.post') }}" method="POST">
-            <?php
-                    //$rand=rand();
-                    //$_SESSION['rand']=$rand;
-                 ?>
-                 {{--<input type="hidden" value="<?php echo $rand; ?>" name="randcheck" />--}}
             {{ csrf_field() }}
             <input type="hidden" id="handphone_number" name="handphone_number" value="">
-            <input type="hidden" id="status" name="status" value="">
-            <input type="hidden" id="score" class="form-control" name="score" placeholder="300-850" 
-                         value="0" min="300" max="850">
 
             <div class="form-group">
                         <label for="name">Name:</label>
                         <input type="text" class="form-control" placeholder="Enter Full Name" id="name" name="name"  required autofocus>
                         @if ($errors->has('name'))
                                       <span class="text-danger">{{ $errors->first('name') }}</span>
+                                  @endif
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" class="form-control" placeholder="Enter User Name" id="username" name="username"  required autofocus>
+                        @if ($errors->has('username'))
+                                      <span class="text-danger">{{ $errors->first('username') }}</span>
                                   @endif
                     </div>
 
@@ -44,7 +44,9 @@
                                 <span class="text-danger">{{ $errors->first('password') }}</span>
                             @endif
             </div>
-
+</div>
+    <!-- column 2 -->
+            <div class="column" style=" float: left;width: 20%;margin-left:100px; padding-top:32px;">
             <div class="form-group">
                         <label for="type" style="margin-bottom:5px;">Type:</label><br>
                         <input type="number" id="type" class="form-control" name="type"  value="2" min="2" max="2">
@@ -61,11 +63,22 @@
                         <label for="female" style="font-size:14px;">Female</label>
                     </div>
 
+            <div class="form-group">
+                <label for="contactNumber">Contact Number:</label>
+                <input type="tel" class="form-control" placeholder="Contact Number" id="handphone_number" name="handphone_number" 
+                pattern="[0-9]{3}-[0-9]{7}|[0-9]{3}-[0-9]{8}" required autofocus>
+                <p style="margin:1px;font-size:9px;">*Format: 123-4567890/123-45678901</p>
+                @if ($errors->has('handphone_number'))
+                                <span class="text-danger">{{ $errors->first('handphone_number') }}</span>
+                @endif
+            </div>  
+
             <div>
                 <button type="submit" class="btn btn-primary"style="width:100%">
                     Submit
                 </button>
             </div>
+</div>
         </form>
 </div>
 </div>
