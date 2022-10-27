@@ -22,16 +22,16 @@
 <div class="row">
     <div class="col-sm-1"></div>
     <div class="col-sm-6">
-        <br><br>
-        <div class="card-body" style="padding:0 !important;">
+        <br>
+        <div class="card-body" style="padding-top:0 !important;padding-left:10px !important;">
             @if (session('success'))
                 <div class="alert alert-success" role="alert">
                     {{ session('success') }}  
                 </div>  
             @endif   
-       <h3>Blacklists</h3><br>
+       <h3>Blacklists</h3>
        @if(auth()->user()->isAdmin() || auth()->user()->isAgent())
-            <button style="width:70px;" class="btn btn-primary" onclick= "window.location.href = '/add-to-blacklist';">Create</button>                        
+            <br><button style="width:70px;" class="btn btn-primary" onclick= "window.location.href = '/add-to-blacklist';">Create</button>                        
             @endif 
     <!-- Search -->
        <form action="{{route('blacklist.search')}}" method="POST">
@@ -48,7 +48,7 @@
         <table class="table table-bordered" style="margin-top:10px;">
             <thread>
                 <tr class="trhead">
-                    <td>Name</td>
+                    <td>Member Name</td>
                     <td>Email</td>
                     <td>Contact Number</td>
                     <td>IC Number</td>
@@ -79,9 +79,13 @@
                     <td>{{ $viewBlacklist->gender }}</td>
                     @if(auth()->user()->isAdmin() || auth()->user()->isAgent())
                     <td style='white-space: nowrap'>
+                        @if(auth()->user()->isAdmin() || auth()->user()->id == $viewBlacklist->created_by)
                         <a href="{{ route('edit.blacklist',['id'=>$viewBlacklist->id]) }}" class="btn btn-warning btn-xs">Edit</a>
                         <a href="{{ route('blacklist.delete',['id'=>$viewBlacklist->id]) }}" class="btn btn-danger btn-xs"
                         onClick="return confirm('Are you sure to delete?')">Delete</a>
+                        @else
+                        N/A
+                        @endif
                     </td>
                     @endif
                     <td>{{ $viewBlacklist->uName }}</td>
@@ -90,9 +94,7 @@
                 @endforeach
             </tbody>
         </table>
-        <div >
         {{ $blacklists -> links("pagination::bootstrap-4")}}
-    </div>
         <br><br>
     </div>
 </div>

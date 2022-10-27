@@ -39,7 +39,7 @@ class BlacklistController extends Controller
         $data = $request->all();
         $check = $this->create($data);
 
-        return redirect('dashboard')->withSuccess('You have added a person to blacklist.');
+        return redirect()->route('blacklist.view')->withSuccess('You have added a person to blacklist.');
     }
 
     public function create(array $data)
@@ -113,7 +113,7 @@ class BlacklistController extends Controller
         $blacklists->save();
 
         Session::flash('success',"Blacklisted person was updated successfully!");
-        return redirect()->route('dashboard');
+        return redirect()->route('pages.blacklist.view');
     }
 
     public function delete($id)

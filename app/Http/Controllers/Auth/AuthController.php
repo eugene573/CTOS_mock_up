@@ -126,14 +126,14 @@ class AuthController extends Controller
     }
     }
 
-    public function dashboard(){
+    // public function dashboard(){
 
-        if(Auth::check()){
-            return view('dashboard');
-        }
+    //     if(Auth::check()){
+    //         return view('dashboard');
+    //     }
 
-        return redirect('login')->withSuccess('You do not have access to this page!');
-    }
+    //     return redirect('login')->withSuccess('You do not have access to this page!');
+    // }
     
     public function create(array $data){
         
@@ -150,25 +150,25 @@ class AuthController extends Controller
 
     public function viewAgent()
     {
-        $users = DB::table('users')->select('users.*')->where('type','2')->get();
+        $users = DB::table('users')->select('users.*')->where('type','2')->paginate(5);
         return view("pages.viewAgent")->with(["users" => $users]);
     }
 
     public function viewMember()
     {
-        $users = User::all()->where('type','1');
+        $users =DB::table('users')->select('users.*')->where('type','1')->paginate(5);
         return view("pages.viewMember")->with(["users" => $users]);
     }
 
     public function showAgent()
     {
-        $users = DB::table('users')->select('users.*')->where('type','2')->get();
+        $users = DB::table('users')->select('users.*')->where('type','2')->paginate(5);;
         return view("pages.showAgent")->with(["users" => $users]);
     }
 
     public function showMember()
     {
-        $users = User::all()->where('type','1');
+        $users = DB::table('users')->select('users.*')->where('type','1')->paginate(5);;
         return view("pages.showMember")->with(["users" => $users]);
     }
 

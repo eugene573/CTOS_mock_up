@@ -52,6 +52,7 @@
                        @endif
                     </div>  
   
+                    
                     </div>
         <!--Column 2-->
                 <div class="column" style=" float: left;width: 20%;margin-left:100px; padding-top:32px;">
