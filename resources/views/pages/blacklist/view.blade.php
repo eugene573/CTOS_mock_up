@@ -17,66 +17,15 @@
         margin-right:0 !important;
     }
     th{
-        font-weight:500;
+        font-weight:500; 
+         cursor: pointer;
     }
-    th.headerSortUp {
-            background-image: url(/images/asc.gif);
-            background-color: #3399FF;
-            background-repeat: no-repeat;
-            background-position: center right;
-        }
-        th.headerSortDown {
-            background-image: url(/images/desc.gif);
-            background-color: #3399FF;
-            background-repeat: no-repeat;
-            background-position: center right;
-        }
 
     </style>
 
-    <script>
-  function sortTable(n) {
-        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-
-        table = document.getElementsByClassName(tableClass)[0];
-        switching = true;
-        dir = "asc";
-        while (switching) {
-            switching = false;
-            rows = table.getElementsByTagName("TR");
-            for (i = 1; i < (rows.length - 1); i++) {
-                shouldSwitch = false;
-                x = rows[i].getElementsByTagName("TD")[n];
-                y = rows[i + 1].getElementsByTagName("TD")[n];
-                        var cmpX=isNaN(parseInt(x.innerHTML))?x.innerHTML.toLowerCase():parseInt(x.innerHTML);
-                        var cmpY=isNaN(parseInt(y.innerHTML))?y.innerHTML.toLowerCase():parseInt(y.innerHTML);
-        cmpX=(cmpX=='-')?0:cmpX;
-        cmpY=(cmpY=='-')?0:cmpY;
-                if (dir == "asc") {
-                    if (cmpX > cmpY) {
-                        shouldSwitch= true;
-                        break;
-                    }
-                } else if (dir == "desc") {
-                    if (cmpX < cmpY) {
-                        shouldSwitch= true;
-                        break;
-                    }
-                }
-            }
-            if (shouldSwitch) {
-                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                switching = true;
-                switchcount ++;      
-            } else {
-                if (switchcount == 0 && dir == "asc") {
-                    dir = "desc";
-                    switching = true;
-                }
-            }
-        }
-        }
-    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"> </script>    
+<script type="text/javascript" src="/js/sortTable.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
  <link rel="stylesheet" type="text/css" href="{{ url('css/search.css') }}">
 <div class="row">
     <div class="col-sm-1"></div>
@@ -106,25 +55,26 @@
 
 
       <!-- Table -->
-        <table  id="mylists" class="table table-bordered table-sortable" style="margin-top:10px;">
+        <table  id="mylists" class="table table-bordered" style="margin-top:10px;">
             <thread>
                 <tr class="trhead">
-                    <th style='white-space: nowrap'>Name
+                    <!-- <th style='white-space: nowrap'>Name
                          <a href="{{route('blacklist.view.name')}}" style="text-decoration:none; color:white;">&#8593</a> 
                          <a href="{{route('blacklist.view.name.desc')}}" style="text-decoration:none; color:white;">&#8595</a> 
-                    </th>
-                    <th >Email</th>
-                    <th>Contact Number</th>
-                    <th>IC Number</th>
-                    <th>Reason</th>
-                    <th>Remark</th>
-                    <th>Bank Account</th>
-                    <th>Gender</th>    
+                    </th> -->
+                    <th onclick="sortTable(0)">Name</th>
+                    <th onclick="sortTable(1)" >Email</th>
+                    <th onclick="sortTable(2)">Contact Number</th>
+                    <th onclick="sortTable(3)">IC Number</th>
+                    <th onclick="sortTable(4)">Reason</th>
+                    <th onclick="sortTable(5)">Remark</th>
+                    <th onclick="sortTable(6)">Bank Account</th>
+                    <th onclick="sortTable(7)">Gender</th>    
                     @if(auth()->user()->isAdmin() || auth()->user()->isAgent())
                     <th>Action</th>
                     @endif     
-                    <th>Created by</th>
-                    <th>Deleted by</th>
+                    <th onclick="sortTable(8)">Created by</th>
+                    <th onclick="sortTable(9)">Deleted by</th>
                 </tr>
             </thread>
             <tbody>
@@ -162,4 +112,7 @@
         <br><br>
     </div>
 </div>
+<script>
+   
+</script>
 @endsection
