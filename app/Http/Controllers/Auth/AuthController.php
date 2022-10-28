@@ -288,6 +288,41 @@ class AuthController extends Controller
 
         return view('pages.showMember')->with('users',$users);
     }
+    public function displayNewerAgent()
+    {
+        $users = DB::table('users')->select('users.*')->where('type','2')->orderBy('id','desc')->paginate(5);
+        return view("pages.showAgent")->with(["users" => $users]);
+    }
+
+    public function displayAgentAlphabetically()
+    {
+        $users = DB::table('users')->select('users.*')->where('type','2')->orderBy('name')->paginate(5);
+        return view("pages.showAgent")->with(["users" => $users]);
+    }
+
+    public function displayAgentAlphabeticallyDesc()
+    {
+        $users = DB::table('users')->select('users.*')->where('type','2')->orderBy('name','desc')->paginate(5);
+        return view("pages.showAgent")->with(["users" => $users]);
+    }
+
+    public function displayNewerMember()
+    {
+        $users = DB::table('users')->select('users.*')->where('type','1')->orderBy('id','desc')->paginate(5);
+        return view("pages.showMember")->with(["users" => $users]);
+    }
+
+    public function displayMemberAlphabetically()
+    {
+        $users = DB::table('users')->select('users.*')->where('type','1')->orderBy('name')->paginate(5);
+        return view("pages.showMember")->with(["users" => $users]);
+    }
+
+    public function displayMemberAlphabeticallyDesc()
+    {
+        $users = DB::table('users')->select('users.*')->where('type','1')->orderBy('name','desc')->paginate(5);
+        return view("pages.showMember")->with(["users" => $users]);
+    }
 
     public function logout()
     {

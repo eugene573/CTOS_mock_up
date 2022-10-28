@@ -43,7 +43,10 @@
    <table class="table table-bordered">
             <thread>
                 <tr class="trhead">
-                    <td>Name</td>
+                <td style='white-space: nowrap'>Name
+                         <a href="{{route('member.show.name')}}" style="text-decoration:none; color:white;">&#8593</a> 
+                         <a href="{{route('member.show.name.desc')}}" style="text-decoration:none; color:white;">&#8595</a> 
+                    </td>
                     <td>Email</td>
                     <td>IC</td>
                     <td>Bank Account Number</td>

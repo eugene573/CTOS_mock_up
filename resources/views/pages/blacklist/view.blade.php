@@ -16,8 +16,67 @@
     .row{
         margin-right:0 !important;
     }
+    th{
+        font-weight:500;
+    }
+    th.headerSortUp {
+            background-image: url(/images/asc.gif);
+            background-color: #3399FF;
+            background-repeat: no-repeat;
+            background-position: center right;
+        }
+        th.headerSortDown {
+            background-image: url(/images/desc.gif);
+            background-color: #3399FF;
+            background-repeat: no-repeat;
+            background-position: center right;
+        }
 
     </style>
+
+    <script>
+  function sortTable(n) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+
+        table = document.getElementsByClassName(tableClass)[0];
+        switching = true;
+        dir = "asc";
+        while (switching) {
+            switching = false;
+            rows = table.getElementsByTagName("TR");
+            for (i = 1; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+                        var cmpX=isNaN(parseInt(x.innerHTML))?x.innerHTML.toLowerCase():parseInt(x.innerHTML);
+                        var cmpY=isNaN(parseInt(y.innerHTML))?y.innerHTML.toLowerCase():parseInt(y.innerHTML);
+        cmpX=(cmpX=='-')?0:cmpX;
+        cmpY=(cmpY=='-')?0:cmpY;
+                if (dir == "asc") {
+                    if (cmpX > cmpY) {
+                        shouldSwitch= true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (cmpX < cmpY) {
+                        shouldSwitch= true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                switchcount ++;      
+            } else {
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
+            }
+        }
+        }
+    </script>
  <link rel="stylesheet" type="text/css" href="{{ url('css/search.css') }}">
 <div class="row">
     <div class="col-sm-1"></div>
@@ -29,10 +88,11 @@
                     {{ session('success') }}  
                 </div>  
             @endif   
-       <h3>Blacklists</h3>
+       <a href="{{route('blacklist.view')}}" style="color:black; text-decoration:none;"><h3>Blacklists</h3></a>
        @if(auth()->user()->isAdmin() || auth()->user()->isAgent())
             <br><button style="width:70px;" class="btn btn-primary" onclick= "window.location.href = '/add-to-blacklist';">Create</button>                        
             @endif 
+
     <!-- Search -->
        <form action="{{route('blacklist.search')}}" method="POST">
     @csrf
@@ -43,24 +103,28 @@
                             </div>
                     </div>
             </form>
-         
-           
-        <table class="table table-bordered" style="margin-top:10px;">
+
+
+      <!-- Table -->
+        <table  id="mylists" class="table table-bordered table-sortable" style="margin-top:10px;">
             <thread>
                 <tr class="trhead">
-                    <td>Member Name</td>
-                    <td>Email</td>
-                    <td>Contact Number</td>
-                    <td>IC Number</td>
-                    <td>Reason</td>
-                    <td>Remark</td>
-                    <td>Bank Account</td>
-                    <td>Gender</td>    
+                    <th style='white-space: nowrap'>Name
+                         <a href="{{route('blacklist.view.name')}}" style="text-decoration:none; color:white;">&#8593</a> 
+                         <a href="{{route('blacklist.view.name.desc')}}" style="text-decoration:none; color:white;">&#8595</a> 
+                    </th>
+                    <th >Email</th>
+                    <th>Contact Number</th>
+                    <th>IC Number</th>
+                    <th>Reason</th>
+                    <th>Remark</th>
+                    <th>Bank Account</th>
+                    <th>Gender</th>    
                     @if(auth()->user()->isAdmin() || auth()->user()->isAgent())
-                    <td>Action</td>
+                    <th>Action</th>
                     @endif     
-                    <td>Created by</td>
-                    <td>Deleted by</td>
+                    <th>Created by</th>
+                    <th>Deleted by</th>
                 </tr>
             </thread>
             <tbody>
