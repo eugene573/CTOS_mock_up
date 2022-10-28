@@ -24,7 +24,7 @@
                 <span class="crose" data-dismiss="alert">&times;</span>
             </div></center>
         @endif
-              <div class="card">
+              <div class="card" style="margin-top:15px;">
                   <div class="card-header">Login</div>
                   <div class="card-body">
   
@@ -60,7 +60,7 @@
                               </div>
                           </div>
   
-                          <div class="form-group row">
+                          <div class="form-group row"  style="margin-bottom:10px !important;">
                               <div class="col-md-6 offset-md-4">
                                   <div class="checkbox">
                                       <label>
@@ -74,7 +74,7 @@
                               <div class="col-md-6 offset-md-4">
                                   <div class="checkbox">
                                       <label>
-                                          <a href="{{ route('forget.password.get') }}">Reset Password</a>
+                                          <a href="{{ route('forget.password.get') }}">Forget Password?</a>
                                       </label>
                                   </div>
                               </div>
