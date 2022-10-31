@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use DB;
-use Session;
 use Cookie;
+use Session;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Symfony\Component\Console\Input\Input;
 
 // here is the code for settling login,register,logout function
 class AuthController extends Controller
@@ -146,13 +145,15 @@ class AuthController extends Controller
             'type' => $data['type'],
         ]);
     }
-
+    
+    // ignore this
     public function viewAgent()
     {
         $users = DB::table('users')->select('users.*')->where('type','2')->paginate(5);
         return view("pages.viewAgent")->with(["users" => $users]);
     }
-
+    
+    //ignore this as well
     public function viewMember()
     {
         $users = DB::table('users')->select('users.*')->where('type','1')->paginate(5);
@@ -191,7 +192,7 @@ class AuthController extends Controller
         $agents->delete();
 
         Session::flash('success',"Agent was deleted from record successfully!");
-        return redirect()->back();
+        return redirect()->route('agent.show');
     }
 
     public function deleteMember($id)
@@ -200,7 +201,7 @@ class AuthController extends Controller
         $members->delete();
 
         Session::flash('success',"Member was deleted from record successfully!");
-        return redirect()->back();
+        return redirect()->route('member.show');
     }
     
     public function update(Request $r)
@@ -260,39 +261,81 @@ class AuthController extends Controller
         $users->bank_account_number3 = $r->bank_account_number3;
         $users->save();
 
-        if($r->type == 1){
-            return redirect()->route('member.show');
-        }
-        elseif($r->type == 2){
+        Session::flash('success',"User was updated successfully!");
+        if($users->type == 2){
             return redirect()->route('agent.show');
+        }
+        else if($users->type == 1){
+            return redirect()->route('member.show');
         }
         
     }
 
-   public function profile(){
+    /*public function profile(){
         $users = User::all()->where('id','=',Auth::id());
         return view('pages.profile')->with(["users" => $users]);
     }
 
-    /* public function about(){
+    public function about(){
         return view("pages.aboutUs");
     }*/
 
     public function searchAgent(Request $r)
     {
-        $keyword = $r->keyword;
-        $users = DB::table('users')->where('name','like','%'.$keyword.'%')->where('type','2')->get();
+        $output = "";
+        $users = DB::table('users')->where('name','like','%'.$r->search.'%')->where('type','2')->paginate(5);
 
-        return view('pages.showAgent')->with('users',$users);
+        foreach($users as $user)
+        {
+            $output.=
+            '<tr>
+            <td>'.$user->name.'</td>
+            <td>'.$user->email.'</td>
+            <td>'.$user->ic.'</td>
+            <td>'.$user->handphone_number.'</td>
+            <td>'.$user->gender.'</td>
+            <td style="white-space: nowrap">
+            '.'
+            <a href="/agent-edit/'.$user->id.'" class="btn btn-warning btn-xs">'.'Edit</a>
+            '.'
+            <a href="/agent-delete/'.$user->id.'" class="btn btn-danger btn-xs"  onClick="return confirm("Are you sure to delete?")">'.'Delete</a>
+            '.'
+            </td>
+            </tr>';
+        }
+
+        return response($output);
     }
 
     public function searchMember(Request $r)
     {
-        $keyword = $r->keyword;
-        $users = DB::table('users')->where('name','like','%'.$keyword.'%')->where('type','1')->get();
+        $output = "";
+        $users = DB::table('users')->where('name','like','%'.$r->search.'%')->where('type','1')->paginate(5);
 
-        return view('pages.showMember')->with('users',$users);
+        foreach($users as $user)
+        {
+            $output.=
+            '<tr>
+            <td>'.$user->name.'</td>
+            <td>'.$user->email.'</td>
+            <td>'.$user->ic.'</td>
+            <td>'.$user->bank_account_number1.'
+                '.$user->bank_account_number2.'
+                '.$user->bank_account_number3.'</td>
+            <td>'.$user->handphone_number.'</td>
+            <td>'.$user->gender.'</td>
+            <td style="white-space: nowrap">
+            '.'
+            <a href="/member-edit/'.$user->id.'" class="btn btn-warning btn-xs">'.'Edit</a>
+            '.'
+            <a href="/member-delete/'.$user->id.'" class="btn btn-danger btn-xs"  onClick="return confirm("Are you sure to delete?")">'.'Delete</a>
+            '.'
+            </td>
+            </tr>';
+        }
+        return response($output);
     }
+
     public function displayNewerAgent()
     {
         $users = DB::table('users')->select('users.*')->where('type','2')->orderBy('id','desc')->paginate(5);
