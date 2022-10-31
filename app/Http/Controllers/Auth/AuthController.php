@@ -260,8 +260,13 @@ class AuthController extends Controller
         $users->bank_account_number3 = $r->bank_account_number3;
         $users->save();
 
-        Session::flash('success',"User was updated successfully!");
-        return redirect()->route('agent.show');
+        if($r->type == 1){
+            return redirect()->route('member.show');
+        }
+        elseif($r->type == 2){
+            return redirect()->route('agent.show');
+        }
+        
     }
 
    public function profile(){
