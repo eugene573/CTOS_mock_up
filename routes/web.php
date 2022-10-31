@@ -59,14 +59,18 @@ Route::get('view-blacklist-alphabetically-desc',[BlacklistController::class, 'di
 Route::get('edit-blacklisted-person/{id}',[BlacklistController::class, 'edit'])->name('edit.blacklist');
 Route::post('update-blacklist',[BlacklistController::class, 'update'])->name('blacklist.update');
 Route::get('delete-blacklisted-person/{id}',[BlacklistController::class, 'delete'])->name('blacklist.delete');
-Route::post('search-blacklist',[BlacklistController::class, 'searchBlacklist'])->name('blacklist.search');
+Route::get('search-blacklist',[BlacklistController::class, 'searchBlacklist'])->name('blacklist.search');
 
+//Change Password
+Route::get('change-password', [AuthController::class, 'editPassword'])->name('password.change');
+Route::post('update-password',[AuthController::class, 'updatePassword'])->name('password.update');
 
+Route::get('profile-edit', [AuthController::class, 'editProfile'])->name('profile.edit');
+Route::post('update-profile',[AuthController::class, 'updateProfile'])->name('profile.update');
 Route::get('profile', [AuthController::class, 'profile'])->name('profile.view'); 
 Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
 Route::get('about-ctos', [AuthController::class, 'about'])->name('about.us'); 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-
 //Route for providing support if user forget password
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
 Route::post('forget-password', [ForgotPasswordController::class, 'sendForgetPasswordForm'])->name('forget.password.post'); 
