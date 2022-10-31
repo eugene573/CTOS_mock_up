@@ -1,6 +1,7 @@
 @extends('layout')
 @include('sidenav')
 @section('content')
+
 <style>
     table {
     font-size:14px;
@@ -25,7 +26,7 @@
          cursor: pointer;
     }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"> </script>    
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"> </script>     -->
 <script type="text/javascript" src="/js/sortTable.js"></script>
 <link rel="stylesheet" type="text/css" href="{{ url('css/search.css') }}">
 <div class="row">
@@ -35,17 +36,11 @@
     <div class="card">
     <h3>Members Information</h3><br>
     <button style="width:70px;" class="btn btn-primary" onclick= "window.location.href = '/user-registration';">Create</button>
-    <form action="{{route('member.search')}}" method="POST">
-    @csrf
-   <div class="search">
-                <div class="input">
-           
-                   <button type="submit"><i class="fa fa-search"></i></button> 
-                   <input name="keyword" type="search" placeholder="Search" >
-                    
-                </div>
-        </div>
-</form>
+
+    <div class="col-md-10" style="max-width:99% !important;">
+        <input type="search" id="search" name="search" placeholder="Search for names..">
+    </div>
+
    <table id="mylists"class="table table-bordered">
             <thread>
                 <tr class="trhead">
@@ -59,7 +54,7 @@
                     
                 </tr>
             </thread>
-            <tbody>
+            <tbody class="alldata">
                 @foreach($users as $viewMember)
                 <tr>
                     <td>{{ $viewMember->name }}</td>
@@ -76,6 +71,10 @@
                 </tr>
                 @endforeach
             </tbody> 
+
+            <tbody id="Content" class="searchdata">
+
+            </tbody>
         </table>
         <div>
         {{ $users -> links("pagination::bootstrap-4")}}</div>
@@ -83,4 +82,37 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    $('#search').on('keyup',function()
+    {
+        $value = $(this).val();
+
+        if($value)
+        {
+            $('.alldata').hide();
+            $('.searchdata').show();
+        }
+        else
+        {
+            $('.alldata').show();
+            $('.searchdata').hide();
+        }
+
+        $.ajax({
+            
+            type: 'get',
+            url: '{{URL::to('search-member') }}',
+            data: {'search':$value},
+
+            success:function(data)
+            {
+                console.log(data);
+                $('#Content').html(data);
+            }
+        });
+    });
+             
+</script>
 @endsection
