@@ -242,11 +242,11 @@
                         @endguest
                         
                         <!--Sample profile-->
-                        <!-- @if(Auth::check())
+                        @if(Auth::check())
                         <li class="nav-item">
                                 <a class="nav-link" href="#" style="color:white;"> Profile </a>
                         </li>
-                        @endif -->
+                        @endif
                     </ul>
         
                 </div>
