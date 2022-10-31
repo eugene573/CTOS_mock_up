@@ -264,12 +264,12 @@ class AuthController extends Controller
         return redirect()->route('agent.show');
     }
 
-    /*public function profile(){
+   public function profile(){
         $users = User::all()->where('id','=',Auth::id());
         return view('pages.profile')->with(["users" => $users]);
     }
 
-    public function about(){
+    /* public function about(){
         return view("pages.aboutUs");
     }*/
 
