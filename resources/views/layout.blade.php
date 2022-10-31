@@ -244,7 +244,7 @@
                         <!--Sample profile-->
                         @if(Auth::check())
                         <li class="nav-item">
-                                <a class="nav-link" href="#" style="color:white;"> Profile </a>
+                                <a class="nav-link" href="{{ route('profile.view') }}" style="color:white;"> Profile </a>
                         </li>
                         @endif
                     </ul>
