@@ -13,7 +13,23 @@
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
         <script src="jquery.3.4.1.js"></script>
         <script src="all.min.js"></script>
-<main class="login-form">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link 
+  href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" 
+  rel="stylesheet"  type='text/css'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+
+<script type="text/javascript">
+$(document).on('click', '.toggle-password', function() {
+
+$(this).toggleClass(" fa-eye fa-eye-slash");
+
+var input = $("#password");
+input.attr('type') === 'password' ? input.attr('type','text') : input.attr('type','password')
+});
+</script>
+
+ <main class="login-form">
   <div class="cotainer">
       <div class="row justify-content-center">
           <div class="col-md-8">
@@ -52,9 +68,13 @@
   
                           <div class="form-group row">
                               <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-                              <div class="col-md-6">
+                              <div class="col-md-6" style='white-space: nowrap'>
+                              <i toggle="#password-field" class="fa-fw fa fa-eye-slash field_icon toggle-password" 
+                              style="position:absolute;margin-left:24rem;margin-top:0.7rem;color:grey;"></i>
                               <input type="password" id="password" class="form-control" name="password" placeholder="Password" required @if(Cookie::has('password')) value="{{Cookie::get('password')}}" @endif>
-                                  @if ($errors->has('password'))
+                           
+                            
+                              @if ($errors->has('password'))
                                       <span class="text-danger">{{ $errors->first('password') }}</span>
                                   @endif
                               </div>
@@ -94,4 +114,5 @@
       </div>
   </div>
 </main>
+
 @endsection
