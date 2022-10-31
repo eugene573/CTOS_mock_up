@@ -79,6 +79,7 @@ input.attr('type') === 'password' ? input.attr('type','text') : input.attr('type
                                   @endif
                               </div>
                           </div>
+                          
   
                           <div class="form-group row"  style="margin-bottom:10px !important;">
                               <div class="col-md-6 offset-md-4">
