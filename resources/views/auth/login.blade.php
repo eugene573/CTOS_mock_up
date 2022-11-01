@@ -33,6 +33,11 @@ input.attr('type') === 'password' ? input.attr('type','text') : input.attr('type
   <div class="cotainer">
       <div class="row justify-content-center">
           <div class="col-md-8">
+          @if(Session::has('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{ Session::get('success') }}
+                            </div>  
+                        @endif
           @if(Session::has('error'))
             <center><div class="alert" style="background-color:#F83030;">
                 <span class="check"><i class="material-icons" style="font-size:20px;color:white;">error</i></span>

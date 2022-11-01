@@ -4,14 +4,16 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Reset Password</div>
-                    <div class="card-body">
-                        @if(Session::has('message'))
+                <div class="card">   
+                    
+                @if(Session::has('success'))
                             <div class="alert alert-success" role="alert">
-                                {{ Session::get('message') }}
+                                {{ Session::get('success') }}
                             </div>  
                         @endif
+                    <div class="card-header">Reset Password</div>
+                    <div class="card-body">
+             
 
                         <form action="{{ route('forget.password.post') }}" method="POST">
                             @csrf
