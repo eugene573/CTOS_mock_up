@@ -7,15 +7,15 @@
   <div class="cotainer" style="overflow-x:hidden">
   <div class="row justify-content-right ml-5">
           <div class="col-md-10">
+          @if(Session::has('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{ Session::get('success') }}
+                            </div>  
+                        @endif
             <br>
             <div class="column" style=" float: left; width: 20%;">
              <h5>Create Members</h5>
                  <form method="POST" action="{{ route('register.post') }}">
-                 <?php
-                    //$rand=rand();
-                    //$_SESSION['rand']=$rand;
-                 ?>
-                 {{--<input type="hidden" value="<?php echo $rand; ?>" name="randcheck" />--}}
                     {{ csrf_field() }}
               
                     <div class="form-group">
