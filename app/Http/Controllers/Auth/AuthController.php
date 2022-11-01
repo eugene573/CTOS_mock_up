@@ -271,12 +271,8 @@ class AuthController extends Controller
         
     }
 
-    /*public function profile(){
-        $users = User::all()->where('id','=',Auth::id());
-        return view('pages.profile')->with(["users" => $users]);
-    }
 
-    public function about(){
+   /* public function about(){
         return view("pages.aboutUs");
     }*/
 
@@ -336,40 +332,78 @@ class AuthController extends Controller
         return response($output);
     }
 
-    public function displayNewerAgent()
-    {
-        $users = DB::table('users')->select('users.*')->where('type','2')->orderBy('id','desc')->paginate(5);
-        return view("pages.showAgent")->with(["users" => $users]);
+    public function profile(){
+        $users = User::all()->where('id',Auth::id());
+        return view('pages.profile')->with(["users" => $users]);
     }
 
-    public function displayAgentAlphabetically()
+    public function editProfile()
     {
-        $users = DB::table('users')->select('users.*')->where('type','2')->orderBy('name')->paginate(5);
-        return view("pages.showAgent")->with(["users" => $users]);
+        $users = User::all()->where('id',Auth::id());
+
+        return view('pages.editProfile')->with(["users" => $users]);
     }
 
-    public function displayAgentAlphabeticallyDesc()
+    public function updateProfile(Request $r)
     {
-        $users = DB::table('users')->select('users.*')->where('type','2')->orderBy('name','desc')->paginate(5);
-        return view("pages.showAgent")->with(["users" => $users]);
+        $users = User::find($r->id);
+        $r->validate([
+            'name' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+            'handphone_number' => 'nullable',
+            'gender' => 'nullable',
+            'ic' => 'nullable',
+            'bank_account_number1' => 'nullable',
+            'bank_account_number2' => 'nullable',
+            'bank_account_number3' => 'nullable',
+        ]);
+
+        $users->name = $r->name;
+        $users->username = $r->username;
+        $users->email = $r->email;
+        $users->handphone_number = $r->handphone_number;
+        $users->gender = $r->gender;
+        $users->ic = $r->ic;
+        $users->bank_account_number1 = $r->bank_account_number1;
+        $users->bank_account_number2 = $r->bank_account_number2;
+        $users->bank_account_number3 = $r->bank_account_number3;
+        $users->save();
+
+        Session::flash('success',"Profile was updated successfully!");
+        return redirect()->route('profile.view');
     }
 
-    public function displayNewerMember()
+    
+     public function editPassword()
     {
-        $users = DB::table('users')->select('users.*')->where('type','1')->orderBy('id','desc')->paginate(5);
-        return view("pages.showMember")->with(["users" => $users]);
-    }
+        $users = User::all()->where('id',Auth::id());
 
-    public function displayMemberAlphabetically()
-    {
-        $users = DB::table('users')->select('users.*')->where('type','1')->orderBy('name')->paginate(5);
-        return view("pages.showMember")->with(["users" => $users]);
-    }
+        return view('pages.editPassword')->with(["users" => $users]);
+    } 
 
-    public function displayMemberAlphabeticallyDesc()
+
+    public function updatePassword(Request $r)
     {
-        $users = DB::table('users')->select('users.*')->where('type','1')->orderBy('name','desc')->paginate(5);
-        return view("pages.showMember")->with(["users" => $users]);
+
+        $r->validate([
+            'password' => 'required',
+            'confirmPassword'=> 'required',
+        ]);
+
+        if($r -> confirmPassword !== $r ->password){
+            Session::flash('error',"Your confirm password is not same as the new password.");
+            return redirect()->route('password.change');
+        }
+        elseif($r -> confirmPassword == $r ->password){
+            User::where('id',$r->userID)->update([
+            'password' => \Hash::make($r->password)
+        ]);
+
+        Session::flash('success',"Password was changed successfully!");
+        return redirect()->route('profile.view');
+        }
+        
     }
 
     public function logout()
