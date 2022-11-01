@@ -14,6 +14,8 @@ return [
     */
 
     'default' => env('MAIL_MAILER', 'smtp'),
+    // 'host' => env('MAIL_HOST','smtp.mailtrap.io'),
+    // 'port' => env('MAIL_PORT','2525'),
 
     /*
     |--------------------------------------------------------------------------
@@ -36,9 +38,9 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST','smtp.mailtrap.io'),
-            'port' => env('MAIL_PORT', 2525),
-            'encryption' => env('MAIL_ENCRYPTION','tls'),
+            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+            'port' => env('MAIL_PORT', 587),
+            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
@@ -78,10 +80,6 @@ return [
                 'log',
             ],
         ],
-        'from' => [
-            'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-            'name' => env('MAIL_FROM_NAME', 'ctos'),
-        ],
     ],
 
     /*
@@ -95,12 +93,8 @@ return [
     |
     */
 
-    'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'ctos'),
-    ],
-       
-    
+    'from' => ['address' => 'exsuper.asia@gmail.com', 'name' => 'CTOS'],
+    'encryption' => env('MAIL_ENCRYPTION','ssl'),
 
     /*
     |--------------------------------------------------------------------------
