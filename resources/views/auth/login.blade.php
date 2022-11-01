@@ -79,7 +79,7 @@ input.attr('type') === 'password' ? input.attr('type','text') : input.attr('type
                                   @endif
                               </div>
                           </div>
-                          
+
   
                           <div class="form-group row"  style="margin-bottom:10px !important;">
                               <div class="col-md-6 offset-md-4">
@@ -95,7 +95,7 @@ input.attr('type') === 'password' ? input.attr('type','text') : input.attr('type
                               <div class="col-md-6 offset-md-4">
                                   <div class="checkbox">
                                       <label>
-                                          <a href="{{ route('forget.password.get') }}">Forget Password?</a>
+                                          <a href="{{ route('forget.password.get') }}" style="text-decoration:none;">Forget Password?</a>
                                       </label>
                                   </div>
                               </div>
