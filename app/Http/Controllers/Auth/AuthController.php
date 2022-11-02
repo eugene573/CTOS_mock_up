@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
+use DB;
 use Session;
+use Cookie;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use DB;
+use Symfony\Component\Console\Input\Input;
 
 // here is the code for settling login,register,logout function
 class AuthController extends Controller
@@ -35,35 +37,65 @@ class AuthController extends Controller
 
         $request->validate([
             'password' => 'required',
-            'email' => 'required',
+            'username' => 'required',
         ]);
 
-        $credentials = $request->only('password', 'email');
-
-        if(Auth::attempt($credentials)){
-            return redirect()->intended('dashboard')->withSuccess('You have successfully logged in!');
+        if($request->has('rememberme')){
+            Cookie::queue('username',$request->username,1440); //1440 means it stays for 24 hours
+            Cookie::queue('password',$request->password,1440);
         }
 
-        return redirect('login')->with('error', 'Email or password is incorrect. Please try again.');;
+        $credentials = $request->only('password', 'username');
+        
 
+        if(Auth::attempt($credentials)){
+            // set remember me token when user check the box
+            //$remember = Input::get('remember');
+            /*if(!empty($remember)){
+                Auth::login(Auth::user()->id, true);
+            }*/
+            if(Auth::user()->isAdmin()){
+                return redirect()->route('agent.register')->withSuccess('You have successfully logged in!');
+            }
+            else if(Auth::user()->isAgent()){
+                return redirect()->route('user.register')->withSuccess('You have successfully logged in!');
+            }
+            else if(Auth::user()->isMember()){
+                return redirect()->route('blacklist.view')->withSuccess('You have successfully logged in!');
+            }
+
+        }
+        else{
+            return redirect()->route('login')->withError( 'Email or password is incorrect. Please try again.');
+        }
     }
 
     public function postRegistration(Request $request){
         
         $request->validate([
             'name' => 'required',
+            'username' => 'required',
             'password' => 'required',
             'email' => 'required',
             'type' => 'required',
             'handphone_number' => 'nullable',
-            'status' => 'nullable',
             'gender' => 'nullable',
         ]);
+
     
         $data = $request->all();
         $check = $this->create($data);
 
-        return redirect('dashboard')->withSuccess('You have successfully logged in!');
+        
+        if($request->type == 1){
+            return redirect()->route('member.show')->withSuccess('You have successfully created a new member!');
+        }
+        elseif($request->type == 2){
+            return redirect()->route('agent.show')->withSuccess('You have successfully created a new agent!');
+        }
+        else{
+            return redirect()->route('member.show')->withSuccess('You have successfully created a new member!');
+        }
     }
 
     public function dashboard(){
@@ -79,36 +111,37 @@ class AuthController extends Controller
         
         return User::create([
             'name' => $data['name'],
+            'username' => $data['username'],
             'password' => Hash::make($data['password']),
             'email' => $data['email'],
             'handphone_number' => $data['handphone_number'],
             'gender' => $data['gender'],
-            'status' => $data['status'],
-            'type' => $data['type']
+            'type' => $data['type'],
         ]);
+        return redirect()->route('show-member')->withSuccess('You have successfully created a new member!');
     }
 
     public function viewAgent()
     {
-        $users = DB::table('users')->select('users.*')->where('type','2')->get();
+        $users = DB::table('users')->select('users.*')->where('type','2')->paginate(5);
         return view("pages.viewAgent")->with(["users" => $users]);
     }
 
     public function viewMember()
     {
-        $users = User::all()->where('type','1');
+        $users = DB::table('users')->select('users.*')->where('type','1')->paginate(5);
         return view("pages.viewMember")->with(["users" => $users]);
     }
 
     public function showAgent()
     {
-        $users = DB::table('users')->select('users.*')->where('type','2')->get();
+        $users = DB::table('users')->select('users.*')->where('type','2')->paginate(5);
         return view("pages.showAgent")->with(["users" => $users]);
     }
 
     public function showMember()
     {
-        $users = User::all()->where('type','1');
+        $users = DB::table('users')->select('users.*')->where('type','1')->paginate(5);
         return view("pages.showMember")->with(["users" => $users]);
     }
 
@@ -126,50 +159,201 @@ class AuthController extends Controller
         return view('pages.editAgent')->with(["users" => $users]);
     }
 
+    public function deleteAgent($id)
+    {
+        $agents = User::find($id);
+        $agents->delete();
+
+        Session::flash('success',"Agent was deleted from record successfully!");
+        return redirect()->back();
+    }
+
+    public function deleteMember($id)
+    {
+        $members = User::find($id);
+        $members->delete();
+
+        Session::flash('success',"Member was deleted from record successfully!");
+        return redirect()->back();
+    }
+    
     public function update(Request $r)
     {
         $users = User::find($r->id);
         $r->validate([
             'name' => 'required',
+            'username' => 'required',
             'password' => 'required',
             'email' => 'required',
             'handphone_number' => 'nullable',
             'gender' => 'nullable',
-            'status' => 'nullable',
             'ic' => 'nullable',
-            'bank_account_number' => 'nullable',
-            'bank_company' => 'nullable'
+            'bank_account_number1' => 'nullable',
+            'bank_account_number2' => 'nullable',
+            'bank_account_number3' => 'nullable',
         ]);
 
+
         $users->name = $r->name;
-        $users->password = $r->password;
+        $users->username = $r->username;
+        $users->password = Hash::make($r->password);
         $users->email = $r->email;
         $users->handphone_number = $r->handphone_number;
         $users->gender = $r->gender;
-        $users->status = $r->status;
         $users->ic = $r->ic;
-        $users->bank_account_number = $r->bank_account_number;
-        $users->bank_company = $r->bank_company;
+        $users->bank_account_number1 = $r->bank_account_number1;
+        $users->bank_account_number2 = $r->bank_account_number2;
+        $users->bank_account_number3 = $r->bank_account_number3;
         $users->save();
+    
+        //return redirect()->route('profile.view');
+     // return view('pages.profile')->withSuccess('You have successfully updated your profile!');
+     //return redirect()->route('member.show')->withSuccess('You have successfully created a new member!');
+     Session::flash('success',"User was updated successfully!");
+     if($users->type == 2){
+         return redirect()->route('agent.show');
+     }
+     else if($users->type == 1){
+         return redirect()->route('member.show');
+     }
+     
+ }
 
-        Session::flash('success',"User was updated successfully!");
-        return redirect()->route('dashboard');
+
+    public function searchAgent(Request $r)
+    {
+        $keyword = $r->keyword;
+        $users = DB::table('users')->where('name','like','%'.$keyword.'%')->where('type','2')->get();
+
+        return view('pages.showAgent')->with('users',$users);
     }
 
-    public function profile(){
-        $users = User::all()->where('id','=',Auth::id());
+    public function searchMember(Request $r)
+    {
+        $keyword = $r->keyword;
+        $users = DB::table('users')->where('name','like','%'.$keyword.'%')->where('type','1')->get();
+
+        return view('pages.showMember')->with('users',$users);
+    }
+
+    public function displayNewerAgent()
+    {
+        $users = DB::table('users')->select('users.*')->where('type','2')->orderBy('id','desc')->paginate(5);
+        return view("pages.showAgent")->with(["users" => $users]);
+    }
+
+    public function displayAgentAlphabetically()
+    {
+        $users = DB::table('users')->select('users.*')->where('type','2')->orderBy('name')->paginate(5);
+        return view("pages.showAgent")->with(["users" => $users]);
+    }
+
+    public function displayAgentAlphabeticallyDesc()
+    {
+        $users = DB::table('users')->select('users.*')->where('type','2')->orderBy('name','desc')->paginate(5);
+        return view("pages.showAgent")->with(["users" => $users]);
+    }
+
+    public function displayNewerMember()
+    {
+        $users = DB::table('users')->select('users.*')->where('type','1')->orderBy('id','desc')->paginate(5);
+        return view("pages.showMember")->with(["users" => $users]);
+    }
+
+    public function displayMemberAlphabetically()
+    {
+        $users = DB::table('users')->select('users.*')->where('type','1')->orderBy('name')->paginate(5);
+        return view("pages.showMember")->with(["users" => $users]);
+    }
+
+    public function displayMemberAlphabeticallyDesc()
+    {
+        $users = DB::table('users')->select('users.*')->where('type','1')->orderBy('name','desc')->paginate(5);
+        return view("pages.showMember")->with(["users" => $users]);
+    }
+
+
+     public function profile(){
+        $users = User::all()->where('id',Auth::id());
         return view('pages.profile')->with(["users" => $users]);
     }
 
-    public function about(){
-        return view("pages.aboutUs");
+    public function editProfile()
+    {
+        $users = User::all()->where('id',Auth::id());
+
+        return view('pages.editProfile')->with(["users" => $users]);
     }
+
+    public function updateProfile(Request $r)
+    {
+        $users = User::find($r->id);
+        $r->validate([
+            'name' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+            'handphone_number' => 'nullable',
+            'gender' => 'nullable',
+            'ic' => 'nullable',
+            'bank_account_number1' => 'nullable',
+            'bank_account_number2' => 'nullable',
+            'bank_account_number3' => 'nullable',
+        ]);
+
+        $users->name = $r->name;
+        $users->username = $r->username;
+        $users->email = $r->email;
+        $users->handphone_number = $r->handphone_number;
+        $users->gender = $r->gender;
+        $users->ic = $r->ic;
+        $users->bank_account_number1 = $r->bank_account_number1;
+        $users->bank_account_number2 = $r->bank_account_number2;
+        $users->bank_account_number3 = $r->bank_account_number3;
+        $users->save();
+
+        Session::flash('success',"Profile was updated successfully!");
+        return redirect()->route('profile.view');
+    }
+
+    
+     public function editPassword()
+    {
+        $users = User::all()->where('id',Auth::id());
+
+        return view('pages.editPassword')->with(["users" => $users]);
+    } 
+
+
+    public function updatePassword(Request $r)
+    {
+
+        $r->validate([
+            'password' => 'required',
+            'confirmPassword'=> 'required',
+        ]);
+
+        if($r -> confirmPassword !== $r ->password){
+            Session::flash('error',"Your confirm password is not same as the new password.");
+            return redirect()->route('password.change');
+        }
+        elseif($r -> confirmPassword == $r ->password){
+            User::where('id',$r->userID)->update([
+            'password' => \Hash::make($r->password)
+        ]);
+
+        Session::flash('success',"Password was changed successfully!");
+        return redirect()->route('profile.view');
+        }
+        
+    }
+
 
     public function logout()
     {
         Session::flush();
         Auth::logout();
-
+        
         return redirect('login');
     }
+
 }

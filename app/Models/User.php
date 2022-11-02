@@ -27,15 +27,16 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
         'ic',
-        'bank_account_number',
-        'bank_company',
+        'bank_account_number1',
+        'bank_account_number2',
+        'bank_account_number3',
         'handphone_number',
-        'status',
         'gender',
-        'type'
+        'type',
     ];
 
     /**
@@ -71,7 +72,7 @@ class User extends Authenticatable
     {
         return $this->type() === self::AGENT;
     }
-    
+
     public function isMember(): bool
     {
         return $this->type() === self::DEFAULT;

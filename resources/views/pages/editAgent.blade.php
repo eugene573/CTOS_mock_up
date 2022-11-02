@@ -1,4 +1,3 @@
-
 @extends('layout')
 @include('sidenav')
 @section('content')
@@ -18,6 +17,13 @@
                         <label for="name">Name:</label>
                         <input type="text" class="form-control" placeholder="Enter Full Name"
                          id="name" name="name"  value="{{$user->name}}"  required autofocus>
+ 
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" class="form-control" placeholder="Enter Username"
+                         id="username" name="username"  value="{{$user->username}}"  required autofocus>
  
                     </div>
 
@@ -46,7 +52,11 @@
                     </div> 
                     <div class="form-group"style="margin-top:20px;">
                         <input type="hidden" class="form-control" 
-                        id="bank_account_number" name="bank_account_number"  value="{{$user->bank_account_number}}" required autofocus>
+                        id="bank_account_number1" name="bank_account_number1"  value="{{$user->bank_account_number1}}" required autofocus>
+                        <input type="hidden" class="form-control" 
+                        id="bank_account_number2" name="bank_account_number2"  value="{{$user->bank_account_number2}}" required autofocus>
+                        <input type="hidden" class="form-control" 
+                        id="bank_account_number3" name="bank_account_number3"  value="{{$user->bank_account_number3}}" required autofocus>
 
                     </div>
                     </div>
@@ -62,6 +72,9 @@
                         <input type="hidden" class="form-control" id="status" name="status" required autofocus>
                        <!-- <p style="margin:1px;font-size:9px;">*No Score, Poor, Low, Fair, Good, Very Good, &nbspExcellent</p>-->
                     </div>
+                    <input type="hidden" class="form-control" id="score" name="score" 
+                        value="{{$user->score}}" required autofocus>
+
                     
                     <div class="form-group">
                         <label for="contactNumber">Contact Number:</label>

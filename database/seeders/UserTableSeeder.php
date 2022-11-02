@@ -18,7 +18,6 @@ class UserTableSeeder extends Seeder
             'name'      => 'Admin',
             'email'     => 'admin@example.com',
             'password'  => bcrypt('password'),
-            'handphone_number'=>'012-1289301',
             'type'      => User::ADMIN,
         ]);
 
@@ -26,16 +25,10 @@ class UserTableSeeder extends Seeder
             'name'      => 'John Doe',
             'email'     => 'john@example.com',
             'password'  => bcrypt('password'),
+            'ic'        => '001023-01-2347',
+            'handphone_number' => '011-12340912',
+            'gender'    => 'Male',
             'type'      => User::AGENT,
-        ]);
-        User::factory()->create([
-            'name'      => 'Lily',
-            'email'     => 'lily@example.com',
-            'password'  => bcrypt('password'),
-            'type'      => User::DEFAULT,
-            'gender' => 'Female',
-            'handphone_number' =>'017-2893983',
-            'status' => 'Good',
         ]);
     }
 }

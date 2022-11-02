@@ -2,8 +2,22 @@
 <html>
     <head>
         <title>CTOS Mock-Up</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{{ asset('js/app.js') }}" defer></script>
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+        <script src="jquery.3.4.1.js"></script>
+        <script src="all.min.js"></script>
+        <!-- Styles -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet" type='text/css'>
+        <link rel="stylesheet" href="path/to/fontawesome.min.css">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <style type="text/css">
            @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
   
@@ -20,7 +34,7 @@
             {
                 box-shadow: 0 2px 4px rgba(0,0,0,.04);
             }
-            .navbar-brand , .nav-link, .my-form, .login-form,.topnav-link
+            .navbar-brand , .nav-link, .my-form, .login-form
             {
                 font-family: Raleway, sans-serif;
             }
@@ -84,66 +98,22 @@
             .img-circle{
                 border-radius: 50%;
             }
-            .topnav-link{
-                font-size:16px;
-            }
-            .topnav-link:hover{
-                color: grey;
-                text-decoration: none;
-            }
 
         </style>
-        <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">
     </head>
 
     <body>
-  
-    <nav class="navbar navbar-expand-lg navbar-laravel" style=" background-image: linear-gradient(to right, #156184, #37758f,#4c8d99);">
+    <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
         <div class="container">
-        @if(Auth::check())
-        <span style="font-size:20px;cursor:pointer;margin-right:5px;margin-bottom:2px;color:white;" onclick="openNav()">&#9776;</span>
+        <span style="font-size:20px;cursor:pointer;margin-right:5px;margin-bottom:2px;" onclick="openNav()">&#9776;</span>
             <div id="mySideNav" class="sidenav">
             <ul style="padding-left:10px;">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>     
-            <li><a href="{{route('about.us')}}">About Us</a></li> 
+            <li><a href="#">About Us</a></li> 
             </ul>
             </div>
-            @endif
         <!--TopNav-->
-        <a class="navbar-brand" href="{{ route('dashboard') }}" style="color:white;"> CTOS Mock-Up</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                @if(Auth::check())
-                <a class="topnav-link ml-3" href="{{ route('blacklist.view') }}"
-                 style="color: white;"> BlackLists </a>
-                 <a class="topnav-link ml-3"href="{{route('about.us')}}" style="color: white;">About Us</a>
-                 @else
-                 
-                 @endif 
-        <!--Login & Logout-->
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto" >   
-                        @guest
-                       
-                            <li class="nav-item" >
-                                <a class="nav-link" href="{{ route('login') }}" style="color:white;">Login</a>
-                            </li>
-                        @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('logout') }}"style="color:white;">Logout</a>
-                            </li>
-                        @endguest
-                        
-                        <!--Sample profile-->
-                        @if(Auth::check())
-                        <li class="nav-item">
-                                <a class="nav-link" href="{{route('profile.view')}}" style="color:white;"> Profile </a>
-                        </li>
-                        @endif
-                    </ul>
-        
-                </div>
+            <a class="navbar-brand" href="{{ route('dashboard') }}"> CTOS Mock-Up</a>       
             </div>
         </nav>
         </div>

@@ -1,76 +1,151 @@
-<!DOCTYPE html>
+<!Doctype html>
 <html>
     <head>
-        <title>CTOS Mock-Up</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- Scripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <!-- Styles -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-        <style type="text/css">
-           @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
-  
-            body{
-                margin: 0;
-                font-size: .9rem;
-                font-weight: 400;
-                line-height: 1.6;
-                color: #212529;
-                text-align: left;
-                background-color: #f5f8fa;
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet" type='text/css'>
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/overlay.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
+        <style>
+            .loader-wrapper {
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                background-color: #242f3f;
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
             }
-            .navbar-laravel
-            {
-                box-shadow: 0 2px 4px rgba(0,0,0,.04);
+            .loader {
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                position: relative;
+                border: 4px solid #Fff;
+                animation: loader 2s infinite ease;
             }
-            .navbar-brand , .nav-link, .my-form, .login-form
-            {
-                font-family: Raleway, sans-serif;
+            .loader-inner {
+                vertical-align: top;
+                display: inline-block;
+                width: 100%;
+                background-color: #fff;
+                animation: loader-inner 2s infinite ease-in;
             }
-            .my-form
-            {
-                padding-top: 1.5rem;
-                padding-bottom: 1.5rem;
+
+            .fade-out{
+                animation: fade-out 1s forwards ease-in;
             }
-            .my-form .row
-            {
-                margin-left: 0;
-                margin-right: 0;
+
+            @keyframes loader {
+                0% { transform: rotate(0deg);}
+                25% { transform: rotate(180deg);}
+                50% { transform: rotate(180deg);}
+                75% { transform: rotate(360deg);}
+                100% { transform: rotate(360deg);}
             }
-            .login-form
-            {
-                padding-top: 1.5rem;
-                padding-bottom: 1.5rem;
+
+            @keyframes loader-inner {
+                0% { height: 0%;}
+                25% { height: 0%;}
+                50% { height: 100%;}
+                75% { height: 100%;}
+                100% { height: 0%;}
             }
-            .login-form .row
-            {
-                margin-left: 0;
-                margin-right: 0;
+
+            @keyframes fade-out {
+                0% { opacity: 1; }
+                100% { opacity: 0; visibility: hidden; }
             }
         </style>
     </head>
-
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="#">CTOS Mock-Up</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto">
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">Login</a>
-                            </li>
-                        @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('logout') }}">Logout</a>
-                            </li>
-                        @endguest
-                    </ul>
-        
-                </div>
+        <div class="loader-wrapper" id="loader-wrapper">
+            <span class="loader"><span class="loader-inner"></span></span>
+        </div>
+        <!-- Navigation -->
+        <div id="mySidenav" class="sidenav">
+            <a href="#" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#"><img src="{{asset('https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png')}}" alt="User"></a>
+            <p>{{Auth()->user()->name}}</p>
+            @if(auth()->user()->isAdmin())
+                <a href="/agent-registration">Register Agent</a>
+                <a href="/user-registration">Register Member</a>
+                <a href="{{ route('logout') }}">Logout</a>
+
+            @elseif(auth()->user()->isAgent())
+                <a href="/user-registration">Register Member</a>
+                <a href="{{ route('logout') }}">Logout</a>
+
+            @elseif(auth()->user()->isMember())
+                <a href="{{ route('logout') }}">Logout</a>
+            @endif
+        </div>
+
+        <!-- Session -->
+        @if(Session::has('success'))
+            <div class="alert" id="success">
+
             </div>
-        </nav>
+        @elseif(Session::has('error'))
+            <div class="aler" id="error">
+                
+            </div>
+        @endif
+
+        <!-- Pull Down Refresh -->
+        @include('refresh')
+
+        <!-- Header -->
+        <div class="header-area" id="header-area">
+            <div class="container h-100 d-flex align-items-center justify-content-start">
+                <span style="font-size:30px; color:#591BC5; cursor:pointer;" onclick="openNav()">&#9776;</span>
+            </div>
+        </div>
 
         @yield('content')
         
+        <!-- Footer -->
+        <div class="footer-nav-area" id="footerNav">
+            <div class="container h-100 px-0">
+                <div class="suha-footer-nav h-100">
+                    <ul class="h-100 d-flex align-items-center justify-content-around ps-0">
+                        <li><a href="#" onclick="history.back()"><i class="fa fa-fw fa-solid fa-arrow-left"></i></a></li>
+                        <li><a href="/home"><i class="fa fa-fw fa-home"></i></a></li>
+                        <li><a href="/profile"><i class="fa fa-fw fa-solid fa-user"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Script -->
+        @yield('script')
+        <script>
+
+            function openNav(){
+                document.getElementById("mySidenav").style.width = "100%";
+            }
+
+            function closeNav(){
+                document.getElementById("mySidenav").style.width = "0%";
+            }
+
+            var loaderWrapper = document.getElementById('loader-wrapper');
+
+            window.addEventListener('load',function(){
+                loaderWrapper.classList.add('fade-out');
+            });
+        </script>
     </body>
 </html>
