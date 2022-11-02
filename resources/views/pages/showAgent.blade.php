@@ -1,7 +1,7 @@
 @extends('layout')
 @include('sidenav')
 @section('content')
-<<<<<<< HEAD
+
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -11,8 +11,7 @@
         <script src="jquery.3.4.1.js"></script>
         <script src="all.min.js"></script>
         
-=======
->>>>>>> 83c73af2e9273ac2506573fe78a7d4ff2f92dfd2
+
 <style>
     table {
     font-size:14px;
@@ -32,9 +31,9 @@
 .row{
     margin-right:0 !important;
 }
-<<<<<<< HEAD
+
     </style>
-=======
+
 th{
         font-weight:500; 
          cursor: pointer;
@@ -42,12 +41,12 @@ th{
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"> </script>    
 <script type="text/javascript" src="/js/sortTable.js"></script>
->>>>>>> 83c73af2e9273ac2506573fe78a7d4ff2f92dfd2
+
     <link rel="stylesheet" type="text/css" href="{{ url('css/search.css') }}">
 <div class="row">
     <div class="col-sm-2"></div>
     <div class="col-sm-6">
-<<<<<<< HEAD
+
 
     @if(Session::has('success'))
             <center><div class="alert" style="background-color:#46C646;">
@@ -82,7 +81,7 @@ th{
                     <td>Handphone Number</td>
                     <td>Gender</td>
                     <td>Action</td>
-=======
+
     @if(Session::has('success'))
                             <div class="alert alert-danger" role="alert">
                                 {{ Session::get('success') }}
@@ -107,8 +106,7 @@ th{
                 <th onclick="sortTable(3)">Handphone Number</th>
                 <th onclick="sortTable(4)">Gender</th>
                 <th>Action</th>
->>>>>>> 83c73af2e9273ac2506573fe78a7d4ff2f92dfd2
-                    
+                  
                 </tr>
             </thread>
             <tbody class="alldata">
@@ -132,11 +130,11 @@ th{
 
             </tbody>
         </table>
-<<<<<<< HEAD
+
         <div > 
-=======
+
         <div >
->>>>>>> 83c73af2e9273ac2506573fe78a7d4ff2f92dfd2
+
         {{ $users -> links("pagination::bootstrap-4")}}
     </div>
         <br>
