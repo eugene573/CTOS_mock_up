@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+<<<<<<< HEAD
         <title>CTOS Mock-Up</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,6 +10,11 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
+=======
+        <title>CTOS</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+>>>>>>> 83c73af2e9273ac2506573fe78a7d4ff2f92dfd2
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
         <script src="jquery.3.4.1.js"></script>
         <script src="all.min.js"></script>
@@ -99,6 +105,46 @@
                 border-radius: 50%;
             }
 
+            .dropdown .dropbtn {
+            font-size: 16px !important;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 10px 14px;
+            background-color: inherit;
+            font-family: inherit; /* Important for vertical align on mobile phones */
+            margin: 0; /* Important for vertical align on mobile phones */
+            }
+
+
+            .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #266b89;
+            min-width: 160px;
+            border-radius:6px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            }
+
+            .dropdown-content a {
+            float: none;
+            color: white !important;
+            padding: 12px 16px;
+            text-decoration: none !important;
+            display: block;
+            text-align: left;
+            font-size:14px !important;
+            }
+
+            .dropdown-content a:hover {
+            background-color: #4b8c99;
+            border-radius:6px;
+            }
+
+            .dropdown:hover .dropdown-content {
+            display: block;
+            }
         </style>
     </head>
 
@@ -109,11 +155,130 @@
             <div id="mySideNav" class="sidenav">
             <ul style="padding-left:10px;">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>     
+<<<<<<< HEAD
             <li><a href="#">About Us</a></li> 
+=======
+           
+>>>>>>> 83c73af2e9273ac2506573fe78a7d4ff2f92dfd2
             </ul>
             </div>
         <!--TopNav-->
+<<<<<<< HEAD
             <a class="navbar-brand" href="{{ route('dashboard') }}"> CTOS Mock-Up</a>       
+=======
+        <a class="navbar-brand" href="#" style="color:white;"> CTOS Website</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+         @if (Auth::check() && Auth::user()->isAdmin())
+                <div class="dropdown">
+                <button class="dropbtn">Register 
+                <i class="fa fa-caret-down"></i>
+                </button>
+               <div class="dropdown-content">
+               <a  href="{{ route('agent.register') }}"
+                 style="color: white;"> Create Agents </a>
+                 <a  href="{{ route('user.register') }}"
+                 style="color: white;"> Create Members </a>
+               </div>
+                    </div>
+            <!-- second dropdown  -->
+                <div class="dropdown">
+                <button class="dropbtn">Blacklists 
+                <i class="fa fa-caret-down"></i>
+                </button>
+               <div class="dropdown-content">
+               <a  href="{{ route('blacklist.view') }}"
+                 style="color: white;"> View BlackLists </a>
+                 <a  href="{{ route('add.to.blacklist') }}"
+                 style="color: white;"> Add to BlackLists </a>
+               </div>
+                    </div>
+        <!-- third dropdown  -->
+            <div class="dropdown">
+                <button class="dropbtn">View Lists 
+                <i class="fa fa-caret-down"></i>
+                </button>
+               <div class="dropdown-content">
+               <a  href="{{ route('agent.view') }}"
+                 style="color: white;">Agents Information </a>
+                 <a  href="{{ route('member.view') }}"
+                 style="color: white;">Members Information </a>
+               </div>
+                    </div>
+           @elseif  (Auth::check() && Auth::user()->isAgent())
+           <div class="dropdown">
+                <button class="dropbtn">Register 
+                <i class="fa fa-caret-down"></i>
+                </button>
+               <div class="dropdown-content">
+                 <a  href="{{ route('user.register') }}"
+                 style="color: white;"> Create Members </a>
+               </div>
+                    </div>
+             <!-- second dropdown  -->   
+                <div class="dropdown">
+                    <button class="dropbtn">Blacklists 
+                    <i class="fa fa-caret-down"></i>
+                    </button>
+                <div class="dropdown-content">
+                <a  href="{{ route('blacklist.view') }}"
+                    style="color: white;"> View BlackLists </a>
+                    <a  href="{{ route('add.to.blacklist') }}"
+                    style="color: white;"> Add to BlackLists </a>
+                </div>
+                        </div>
+      
+            <div class="dropdown">
+                <button class="dropbtn">View Lists 
+                <i class="fa fa-caret-down"></i>
+                </button>
+               <div class="dropdown-content">
+                 <a  href="{{ route('member.view') }}"
+                 style="color: white;">Members Information </a>
+               </div>
+                    </div>
+                    @elseif(Auth::check() && Auth::user()->isMember())
+                         <!--  dropdown  -->   
+                <div class="dropdown">
+                    <button class="dropbtn">Blacklists 
+                    <i class="fa fa-caret-down"></i>
+                    </button>
+                <div class="dropdown-content">
+                <a  href="{{ route('blacklist.view') }}"
+                    style="color: white;"> View BlackLists </a>
+                </div>
+                        </div>
+                    @else
+                    <div>
+                       
+                    </div>             
+                 @endif 
+        <!--Login & Logout-->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto" >   
+                        @guest
+                       
+                            <li class="nav-item" >
+                                <a class="nav-link" href="{{ route('login') }}" style="color:white;">Login</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('logout') }}"style="color:white;">Logout</a>
+                            </li>
+                        @endguest
+                        
+                        <!--Sample profile-->
+                        @if(Auth::check())
+                        <li class="nav-item">
+                                <a class="nav-link" href="{{ route('profile.view') }}" style="color:white;"> Profile </a>
+                        </li>
+                        @endif
+                    </ul>
+        
+                </div>
+>>>>>>> 83c73af2e9273ac2506573fe78a7d4ff2f92dfd2
             </div>
         </nav>
         </div>

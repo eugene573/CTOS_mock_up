@@ -25,8 +25,4 @@ class Blacklist extends Model
         'deleted_by',
         'social_media_account'
     ];
-
-    public function blacklist(){
-        return $this->hasMany('App/Models/User');
-    }
 }

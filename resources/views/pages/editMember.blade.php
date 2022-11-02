@@ -21,10 +21,17 @@
                     </div>
 
                     <div class="form-group">
+<<<<<<< HEAD
                         <label for="username">User Name:</label>
                         <input type="text" class="form-control"  value="{{$user->username}}" id="username" name="username"  required autofocus>
                         <input type="hidden" name="id" id="id"
                 value="{{$user->username}}">
+=======
+                        <label for="username">Username:</label>
+                        <input type="text" class="form-control" placeholder="Enter Username"
+                         id="username" name="username"  value="{{$user->username}}"  required autofocus>
+ 
+>>>>>>> 83c73af2e9273ac2506573fe78a7d4ff2f92dfd2
                     </div>
 
                     <div class="form-group" style="margin-top:20px;">

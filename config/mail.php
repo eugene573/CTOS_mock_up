@@ -14,6 +14,8 @@ return [
     */
 
     'default' => env('MAIL_MAILER', 'smtp'),
+    // 'host' => env('MAIL_HOST','smtp.mailtrap.io'),
+    // 'port' => env('MAIL_PORT','2525'),
 
     /*
     |--------------------------------------------------------------------------
@@ -91,10 +93,8 @@ return [
     |
     */
 
-    'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
-    ],
+    'from' => ['address' => 'exsuper.asia@gmail.com', 'name' => 'CTOS'],
+    'encryption' => env('MAIL_ENCRYPTION','ssl'),
 
     /*
     |--------------------------------------------------------------------------
